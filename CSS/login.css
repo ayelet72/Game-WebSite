@@ -1,0 +1,82 @@
+body{
+    align-items: center;
+    background-color: rgb(246, 246, 246);
+    line-height: 1.6;
+}
+.nav{
+    padding-top: 0px;
+
+}
+main{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;                                                                                                                                                                                             
+    width: 100%; 
+    align-items: center
+}
+.login-container {
+    display: flex !important;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center !important;
+    gap: 20px;
+    width: 100%; 
+    max-width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+h1{
+    text-align: center;
+}
+.login-form{
+    display: flex !important;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center !important;
+}
+.login-form label {
+    padding: 4px;
+    display: flex !important;
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: rgb(2, 26, 47);
+}
+.login-form button{
+    border:black;
+    padding: 4px 200px;
+    border-radius: 5px;
+    gap: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+input{
+    border-radius:5%;
+    border-style:solid;
+    cursor: pointer;
+    font-size: 1 rem;
+    font-weight: 30;
+    position: relative;
+    z-index: 1;
+    height: 10px;
+    padding: 12px 12px 6px!important;
+    color: var(--color-text, rgba(0, 0, 0, 0.9)) !important;
+    border-radius: 8px !important;
+
+}
+h4{
+    color:rgb(2, 26, 47);    
+    border-color: black;
+    margin: 12px;
+}
+.contact-form button:hover {
+    background-color: #575353;
+     
+}
+a{
+    color:blue;
+}

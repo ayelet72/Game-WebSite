@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/CSS/login.css">
+
 </head>
 <body>
+    <header class="nav">
+        <div >
+            <img src="/Images/logo.jpg" alt="logo" id="logo">
+        </div>
+    </header>
+    <main>
+        <header>
+            <div class="login-container">
+                <h1>התחברות</h1>
+                
+                <form class="login-form">
+                    <label for="name"> שם משתמש:</label>
+                    <input type="text" id="name" name="name" placeholder="הכנס שם משתמש" required>
+
+                    <label for="password">סיסמא:</label>
+                    <input type="password" id="password" name="password" placeholder="חייב להכיל לפחות 6 תוים" required>
+
+                <hr>
+                <button type="submit">Submit</button>
+
+            </form>
+        </header>
+        <h4>פעם ראשונה? <a href="sign.html">הירשמו כאן</a></h4>
+        <h4>שכחת סיסמא? <a href="sign.html">הירשמו כאן</a></h4>
+    </main>
     
+
 </body>
 </html>
