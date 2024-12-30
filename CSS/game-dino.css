@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .game-container {
+    text-align: center;
+  }
+  
+  #score {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  #game-area {
+    position: relative;
+    width: 800px;
+    height: 200px;
+    background-color: #ffffff;
+    border: 2px solid #000;
+    overflow: hidden;
+  }
+
+  #dino img{
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;  /* מתחיל ברצפה */
+    transition: bottom 0.1s;
+  }
+
+
+  #obstacle {
+    position: absolute;
+    bottom: 0;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff6347;
+    border-radius: 5px;
+    animation: moveObstacle 2s linear infinite;
+  }
+  
+  @keyframes moveObstacle {
+    from {
+      right: -50px;
+    }
+    to {
+      right: 850px;
+    }
+  }
+  
