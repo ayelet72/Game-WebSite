@@ -2,9 +2,15 @@ body{
     align-items: center;
     background-color: rgb(246, 246, 246);
     line-height: 1.6;
+
+}
+img{
+    size:150px 150px;
 }
 .nav{
     padding-top: 0px;
+    color: #575353;
+    z-index: 2;
 
 }
 main{
@@ -22,32 +28,39 @@ main{
     justify-content: center !important;
     gap: 20px;
     width: 100%; 
-    max-width: 600px;
+    max-width: 400px;
+    height:420px ;
     padding: 30px;
     margin: 0 auto;
+    background-color: rgb(7, 10, 55);
     border: 1px solid #ccc; 
     border-radius: 10px; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 h1{
     text-align: center;
+    color: #ffffff;
+    margin:0px
 }
 .login-form{
     display: flex !important;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
+    align-self: center;
     justify-content: center !important;
+    padding-bottom: 20px;
 }
 .login-form label {
     padding: 4px;
     display: flex !important;
     margin-bottom: 3px;
     font-weight: bold;
-    color: rgb(2, 26, 47);
+    color: rgb(255, 255, 255);
 }
 .login-form button{
     border:black;
-    padding: 4px 200px;
+    padding: 10px 50px;
     border-radius: 5px;
     gap: 20px;
     cursor: pointer;
@@ -59,24 +72,62 @@ input{
     border-style:solid;
     cursor: pointer;
     font-size: 1 rem;
-    font-weight: 30;
+    font-weight: 40;
     position: relative;
     z-index: 1;
     height: 10px;
+    width: 200px;
     padding: 12px 12px 6px!important;
     color: var(--color-text, rgba(0, 0, 0, 0.9)) !important;
-    border-radius: 8px !important;
+    border-radius: 5px !important;
 
 }
+#showPassword{
+    size:3px;
+    padding:0px;
+}
 h4{
+    padding-right: 30px;
     color:rgb(2, 26, 47);    
     border-color: black;
-    margin: 12px;
+    margin: 10px;
 }
 .contact-form button:hover {
     background-color: #575353;
      
 }
+
 a{
-    color:blue;
+    color: #0025f9;
+}
+
+/* popup message: */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+}
+
+.popup button {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
 }

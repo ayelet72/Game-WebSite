@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/CSS/login.css">
+    <link rel="script" href="/js/login.js">
 
 </head>
 <body>
@@ -16,23 +17,37 @@
     <main>
         <header>
             <div class="login-container">
-                <h1>התחברות</h1>
-                
+                <h1>התחברות:</h1>
                 <form class="login-form">
                     <label for="name"> שם משתמש:</label>
                     <input type="text" id="name" name="name" placeholder="הכנס שם משתמש" required>
-
+                    <br>
+                    
                     <label for="password">סיסמא:</label>
                     <input type="password" id="password" name="password" placeholder="חייב להכיל לפחות 6 תוים" required>
+                    <label> <input type="checkbox" id="showPassword"> הצג סיסמא</label>
+                    <script>
+                        document.getElementById('showPassword').addEventListener('change', (event) => {
+                            const passwordInput = document.getElementById('password');
+                            passwordInput.type = event.target.checked ? 'text' : 'password';
+                        });
+                    </script>
 
-                <hr>
-                <button type="submit">Submit</button>
+                <br>
+                <br>
+                <button type="submit">התחילו לשחק!</button>
 
             </form>
         </header>
-        <h4>פעם ראשונה? <a href="sign.html">הירשמו כאן</a></h4>
-        <h4>שכחת סיסמא? <a href="sign.html">הירשמו כאן</a></h4>
+        <h4>פעם ראשונה? <a href="sign.html">הירשמו כאן</a>    /    שכחת סיסמא? <a href="sign.html">לחץ כאן</a></h4>
     </main>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>האם תרצה שנזכור אותך?</p>
+        <button id="rememberButton">זכור אותי</button>
+        <button id="closeButton">לא עכשיו</button>
+    </div>
     
 
 </body>
