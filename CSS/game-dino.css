@@ -7,56 +7,66 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
-  }
+}
   
-  .game-container {
+.game-container {
     text-align: center;
-  }
+}
   
-  #score {
+#score {
     font-size: 24px;
     margin-bottom: 10px;
-  }
+}
   
-  #game-area {
+#game-area {
     position: relative;
     width: 800px;
     height: 200px;
     background-color: #ffffff;
     border: 2px solid #000;
     overflow: hidden;
-  }
+}
 
-  #dino img{
+#dino {
     position: absolute;
-    bottom: 0;
+    bottom: -8px;
     left: 50px;
     width: 80px;
-    height: auto;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 0;  /* מתחיל ברצפה */
+    height: 80px;
     transition: bottom 0.1s;
-  }
+}
 
+#dino img {
+    width: 100%;
+    height: auto;
+}
 
-  #obstacle {
+#obstacle {
     position: absolute;
-    bottom: 0;
-    right: -50px;
-    width: 50px;
-    height: 50px;
-    background-color: #ff6347;
-    border-radius: 5px;
-    animation: moveObstacle 2s linear infinite;
-  }
-  
-  @keyframes moveObstacle {
+    bottom: -8px; /* העץ נשאר על הקרקע */
+    right: -60px; /* התאמה למיקום ההתחלתי */
+    width: 60px;
+    height: auto;
+    animation: moveObstacle 2s linear infinite; /* תנועה חלקה */
+}
+
+
+#obstacle img {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes moveObstacle {
     from {
-      right: -50px;
+        right: -60px;
     }
     to {
-      right: 850px;
+        right: 100%;
     }
+}
+
+
+#obstacle.paused {
+    animation-play-state: paused;
   }
   
