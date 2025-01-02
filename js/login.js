@@ -1,39 +1,48 @@
 
+localStorage.setItem('username', 'איילת השחר');
+localStorage.setItem('password', '1234567');
 
 document.getElementById('login-form').addEventListener("submit",(ev)=>{
-    ev.preventDefault();
+
     const userName = document.getElementById("name");
-    const pass =document.getElementById("password");
+    const pass = document.getElementById("password");
+    
 
-    const popup = getElementById('popup');
-    const overlay = document.getElementById('overlay');
+    // checks if the user exists in the Local Storage
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+    const wrongError = document.getElementById('wrong');
 
-    popup.style.display = 'block';
-    overlay.style.display = 'block';
-
-    //saving the login information- if the user want to :
-    document.getElementById('rememberButton').addEventListener('click', () => {
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        popup.style.display = 'none';
-        overlay.style.display = 'none';
-        alert('פרטיך נשמרו בהצלחה!');
-    });
-
-    document.getElementById('closeButton').addEventListener('click', () => {
-        popup.style.display = 'none';
-        overlay.style.display = 'none';
-        alert('המשתמש לא נשמר.');
-    });
-
-    const passwordError = document.getElementById('passwordError');
-        // checks the password length:
-        if (password.length < 6) {
-            passwordError.textContent = "הסיסמא חייבת להכיל לפחות 6 תווים.";
+    if (storedUsername !== userName.value || storedPassword !== pass.value) {
+        wrongError.style.display="block";
+        ev.preventDefault();
+        // checking the password length : 
+        const passwordError = document.getElementById('passerror');
+        if (password.value.length < 6) {
+            passwordError.style.display = "block"; //showing the error
+            ev.preventDefault();
             return;
-        } 
-        else{
+        } else {
             passwordError.textContent = "";
+            passwordError.style.display = "none"; //covers the error
+        }
+        return;
+
+    }
+    if(storedUsername == userName.value && storedPassword == pass.value) {
+      window.location.href = "";
+      wrongError.style.display="none";
+    }
+
+    // checking the password length : 
+    const passwordError = document.getElementById('passerror');
+        if (password.value.length < 6) {
+            passwordError.style.display = "block"; //showing the error
+            ev.preventDefault();
+            return;
+        } else {
+            passwordError.textContent = "";
+            passwordError.style.display = "none"; //covers the error
         }
 
 
