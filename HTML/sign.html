@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>הרשמה</title>
+    <link rel="stylesheet" href="/CSS/signup.css">
+    <script defer src="/js/signup.js"></script>
 </head>
 <body>
-<h1>הרשמה</h1>
+    <header>
+        <div class="nav">
+            <img src="/Images/logo6.5.jpg" alt="logo" id="logo">
+        </div>
+    </header>
+    <main>
+        <div class="signup-container">
+            <h1>הרשמה:</h1>
+            <form id="signup-form" class="signup-form">
+                <label for="username">שם משתמש:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">אימייל:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">סיסמא:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <div id="error" class="error" style="display: none; color: red;">משתמש כבר קיים או בתיבת בעל הפרטים</div>
+
+                <button type="submit">הרשמה</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

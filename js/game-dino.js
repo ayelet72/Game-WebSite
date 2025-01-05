@@ -5,6 +5,7 @@ const scoreDisplay = document.getElementById('score');
 let isJumping = false;
 let score = 0;
 let gameSpeed = 2000;
+let gameTime = 200;
 let isGameOver = false; // משתנה למניעת התנגשויות חוזרות
 
 // קפיצה כאשר לוחצים על מקש הרווח
@@ -57,13 +58,13 @@ function checkCollision() {
   const deltaY = Math.abs(dinoCenterY - obstacleCenterY);
 
   // הגדרת סף התנגשות
-  const collisionThresholdX = (dinoRect.width + obstacleRect.width) / 2 - 20;
-  const collisionThresholdY = (dinoRect.height + obstacleRect.height) / 2 - 20;
+  const collisionThresholdX = (dinoRect.width + obstacleRect.width) / 2 - 30;
+  const collisionThresholdY = (dinoRect.height + obstacleRect.height) / 2 - 30;
 
   if (deltaX < collisionThresholdX && deltaY < collisionThresholdY) {
     isGameOver = true; // מנע התנגשויות נוספות
     obstacle.classList.add('paused'); // עצור את האנימציה
-    // alert('Game Over! Your score: ' + score);
+    alert('Game Over! Your score: ' + score);
     resetGame();
   }
 }
@@ -72,10 +73,11 @@ function checkCollision() {
 function resetGame() {
   score = 0;
   gameSpeed = 2000;
+  gameTime=200;
   isGameOver = false;
   scoreDisplay.textContent = `Score: ${score}`;
   obstacle.classList.remove('paused');
-  obstacle.style.animationDuration = `${gameSpeed / 1000}s`;
+  obstacle.style.animationDuration = `${gameSpeed / gameTime}s`;
   obstacle.style.right = '-60px';  // החזרת העץ להתחלה
 }
 
@@ -83,9 +85,16 @@ function resetGame() {
 function increaseDifficulty() {
   if (gameSpeed > 800) {
     gameSpeed -= 100;
-    obstacle.style.animationDuration = `${gameSpeed / 1000}s`;
+    gameTime += 10; 
+    // עצירת האנימציה והפעלתה מחדש עם הזמן החדש
+    obstacle.style.animation = 'none'; // עצירה
+    void obstacle.offsetWidth; // טריק לאתחול האנימציה
+    obstacle.style.animation = `moveObstacle ${gameSpeed / gameTime}s linear infinite`; // הפעלה מחדש עם הזמן החדש
+    console.log("gameSpeed= "+gameSpeed);
+    console.log("gameTime= "+gameTime);
   }
 }
+
 
 // עדכון ניקוד
 function updateScore() {
@@ -103,5 +112,9 @@ setInterval(() => {
 // עדכון ניקוד וקושי כל שניה
 setInterval(() => {
   updateScore();
-  // increaseDifficulty();
+
 }, 1000);
+
+setInterval(() => {
+increaseDifficulty();
+},10);

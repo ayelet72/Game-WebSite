@@ -61,9 +61,10 @@ body {
         right: -60px;
     }
     to {
-        right: 100%;
+        right: 800px;
     }
 }
+
 
 
 #obstacle.paused {
