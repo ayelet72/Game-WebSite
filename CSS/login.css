@@ -1,9 +1,10 @@
 body{
     align-items: center;
-    background-color: rgb(246, 246, 246);
+    background-color:rgb(26 15 83);
     line-height: 1.6;
 
 }
+
 img{
     size:150px 150px;
 }
@@ -20,7 +21,7 @@ main{
     flex-direction: column;                                                                                                                                                                                             
     width: 100%; 
     align-items: center;
-    margin-top: 5px;
+    margin-top: 15px;
      
 }
 .login-container {
@@ -34,14 +35,14 @@ main{
     height:420px ;
     padding: 30px;
     margin: 0 auto;
-    background-color: rgb(7, 10, 55);
-    border: 1px solid #ccc; 
+    background-color: #f1f2e7; ;
+    border: 4px solid #a6b8f9; 
     border-radius: 10px; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 h1{
     text-align: center;
-    color: #ffffff;
+    color: #0c022b;
     margin:0px
 }
 .login-form{
@@ -59,7 +60,7 @@ h1{
     margin-bottom: 3px;
     font-weight: bold;
     align-items: center;
-    color: rgb(255, 255, 255);
+    color: rgb(4, 0, 44);
 }
 .passerror {
     size: 10px;
@@ -74,13 +75,15 @@ h1{
     color: #d11124;
 }
 .login-form button{
-    border:black;
+    border-color:rgb(3, 2, 45);
+    background-color: rgb(26 15 83);
     padding: 10px 50px;
     border-radius: 5px;
     gap: 20px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
+    color: aliceblue;
 }
 #showPassword{
     width:8px;
@@ -109,7 +112,7 @@ input{
 }
 h4{
     padding-right: 20px;
-    color:rgb(2, 26, 47);    
+    color:rgb(174, 185, 194);    
     border-color: black;
     margin: 10px;
 }
@@ -120,35 +123,4 @@ h4{
 
 a{
     color: #0025f9;
-}
-
-/* popup message: */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    display: none;
-}
-
-.popup button {
-    margin: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
 }
