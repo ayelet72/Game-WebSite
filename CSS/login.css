@@ -2,6 +2,7 @@ body{
     align-items: center;
     background-color:rgb(26 15 83);
     line-height: 1.6;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
@@ -121,5 +122,5 @@ h4{
 }
 
 a{
-    color: #0025f9;
+    color: #1385ff;
 }
