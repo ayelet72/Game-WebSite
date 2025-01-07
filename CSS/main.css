@@ -84,3 +84,47 @@ body{
 span{
     color: #7d0068;
 }
+/* פרטי המשתמש */
+.user-info {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: #f0f8ff; /* כחול בהיר */
+    border: 1px solid #1a73e8; /* גבול כחול */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: right;
+    width: 200px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.user-info h2 {
+    margin: 0;
+    color: #1a73e8; /* כחול */
+    font-size: 1.2rem;
+}
+
+.user-info p {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+}
+
+#login-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#login-link:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}

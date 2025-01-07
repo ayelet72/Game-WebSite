@@ -3,41 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>משחקים</title>
     <link rel="stylesheet" href="../css/main.css">
-    <script defer src="../js/main.js"></script></head>
+    <script defer src="../js/main.js"></script>
 </head>
 <body>
     <header>
-        <div >
+        <div>
             <img src="../Images/logo6.jpg" alt="logo" id="logo">
         </div>
+        <!-- פרטי המשתמש -->
+        <div class="user-info">
+            <h2 id="welcome-message">ברוך הבא!</h2>
+            <p id="user-stats">טוען נתונים...</p>
+            <a href="login.html" id="login-link" class="hidden">התחבר</a>
+        </div>
     </header>
-    <div class="games-container">
-        <div class="game large">
-            <a href="game-dino.html">
-                <img src="../Images/main/dinoGif.gif" alt="Dino Game">
-                <span>Dino</span>
-            </a>
+    <main>
+        <!-- משחקים -->
+        <div class="games-container">
+            <div class="game large">
+                <a href="game-dino.html">
+                    <img src="../Images/main/dinoGif.gif" alt="Dino Game">
+                    <span>Dino</span>
+                </a>
+            </div>
+            <div class="game large">
+                <a href="game-chickens.html">
+                    <img src="../Images/main/chikenGif.webp" alt="Chicken Invasion">
+                    <span>Chicken Invasion</span>
+                </a>
+            </div>
+            <div class="game upcoming">
+                <img src="../Images/main/game1.jpg" alt="Game 3">
+            </div>
+            <div class="game upcoming">
+                <img src="../Images/main/game2.jpg" alt="Game 4">
+            </div>
+            <div class="game upcoming">
+                <img src="../Images/main/game3.jpg" alt="Game 5">
+            </div>
+            <div class="game upcoming">
+                <img src="../Images/main/game4.jpeg" alt="Game 6">
+            </div>
         </div>
-        <div class="game large">
-            <a href="game-chickens.html">
-                <img src="../Images/main/chikenGif.webp" alt="Chicken Invasion">
-                <span>Chicken Invasion</span>
-            </a>
-        </div>
-        <div class="game upcoming">
-            <img src="../Images/main/game1.jpg" alt="Game 3">
-        </div>
-        <div class="game upcoming">
-            <img src="../Images/main/game2.jpg" alt="Game 4">
-        </div>
-        <div class="game upcoming">
-            <img src="../Images/main/game3.jpg" alt="Game 5">
-        </div>
-        <div class="game upcoming">
-            <img src="../Images/main/game4.jpeg" alt="Game 6">
-        </div>
-    </div>
+    </main>
 </body>
 </html>
