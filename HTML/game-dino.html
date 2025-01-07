@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dino Game</title>
-  <link rel="stylesheet" href="../css/game-dino.css">
-  <link rel="stylesheet" href="../css/game-dino.js">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dino Game</title>
+    <link rel="stylesheet" href="../css/game-dino.css">
 </head>
 <body>
-  <div class="game-container">
-    <div id="score">Score: 0</div>
-    <div id="game-area">
-      <div id="dino">
-        <img src="../Images/game-dino/dino.png" alt="dinosaor picture">
-      </div>
-      <div id="obstacle">
-        <img src="../Images/game-dino/tree.png" alt="tree picture">
-      </div>
+    <!-- קישור לעמוד הראשי במקום הלוגו -->
+    <div id="logo">
+        <a href="main.html">
+            <img src="../Images/logo6.jpg" alt="Game Logo">
+        </a>
     </div>
+    
+    <div class="game-container">
+      <div id="timer">Timer: 0s</div>
+      <div id="game-area">
+          <div id="dino">
+              <img src="../Images/game-dino/dino.png" alt="Dino">
+          </div>
+          <div id="obstacle">
+              <img src="../Images/game-dino/tree.png" alt="Obstacle">
+          </div>
+      </div>
+      <!-- הודעת פסילה מופיעה מתחת למשחק -->
+      <div id="game-over-message"></div>
+      <button id="reset-btn" onclick="resetGame()">Restart Game</button>
   </div>
-  <script src="../js/game-dino.js"></script>
+  
+    <script src="../js/game-dino.js"></script>
 </body>
 </html>
+ 

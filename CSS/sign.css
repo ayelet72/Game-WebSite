@@ -1,3 +1,4 @@
+/* עיצוב רקע כללי */
 body {
     background-color: #1a0f53;
     font-family: Arial, sans-serif;
@@ -8,6 +9,7 @@ body {
     margin: 0;
 }
 
+/* עיצוב קונטיינר */
 .signup-container {
     background-color: #f1f2e7;
     padding: 30px;
@@ -18,6 +20,7 @@ body {
     text-align: center;
 }
 
+/* עיצוב טופס */
 .signup-form {
     display: flex;
     flex-direction: column;
@@ -39,4 +42,11 @@ body {
 
 .signup-form button:hover {
     background-color: #120a5e;
+}
+
+/* עיצוב הודעות שגיאה */
+.error {
+    display: none;
+    color: red;
+    font-size: 14px;
 }

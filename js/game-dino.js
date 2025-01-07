@@ -1,120 +1,143 @@
 const dino = document.getElementById('dino');
 const obstacle = document.getElementById('obstacle');
-const scoreDisplay = document.getElementById('score');
+const scoreDisplay = document.getElementById('timer');
+const gameOverMessage = document.getElementById('game-over-message');
+const resetBtn = document.getElementById('reset-btn');
 
 let isJumping = false;
 let score = 0;
 let gameSpeed = 2000;
 let gameTime = 200;
-let isGameOver = false; // משתנה למניעת התנגשויות חוזרות
+let isGameOver = false;
+
+// משתנים להעלאת רמת קושי
+let difficultyIncreaseInterval;
+let obstacleSpeed = 2;  // מהירות התחלתית של המכשול
 
 // קפיצה כאשר לוחצים על מקש הרווח
 document.addEventListener('keydown', (event) => {
-  if (event.code === 'Space' && !isJumping && !isGameOver) {
-    jump();
-  }
+    if (event.code === 'Space' && !isJumping && !isGameOver) {
+        jump();
+    }
 });
 
 // פונקציית קפיצה
 function jump() {
-  isJumping = true;
-  let jumpHeight = -8;
-  let upInterval = setInterval(() => {
-    if (jumpHeight >= 120) {
-      clearInterval(upInterval);
-      let downInterval = setInterval(() => {
-        if (jumpHeight <= -8) {
-          clearInterval(downInterval);
-          isJumping = false;
+    isJumping = true;
+    let jumpHeight = -8;
+    let upInterval = setInterval(() => {
+        if (jumpHeight >= 120) {
+            clearInterval(upInterval);
+            let downInterval = setInterval(() => {
+                if (jumpHeight <= -8) {
+                    clearInterval(downInterval);
+                    isJumping = false;
+                } else {
+                    jumpHeight -= 10;
+                    dino.style.bottom = `${jumpHeight}px`;
+                }
+            }, 20);
         } else {
-          jumpHeight -= 10;
-          dino.style.bottom = `${jumpHeight}px`;
+            jumpHeight += 10;
+            dino.style.bottom = `${jumpHeight}px`;
         }
-      }, 20);
-    } else {
-      jumpHeight += 10;
-      dino.style.bottom = `${jumpHeight}px`;
-    }
-  }, 20);
+    }, 20);
 }
 
-// בדיקת התנגשות בין הדינוזאור למכשול
+// פונקציה להגדלת מהירות המכשול
+function increaseDifficulty() {
+    if (isGameOver) return;
+
+    obstacleSpeed -= 0.2;
+    const newSpeed = Math.max(0.8, obstacleSpeed);  // הגבלת מהירות מינימלית
+    obstacle.style.animationDuration = `${newSpeed}s`;
+}
+
+// התחלת טיימר להעלאת רמת קושי כל 10 שניות
+function startDifficultyTimer() {
+    difficultyIncreaseInterval = setInterval(increaseDifficulty, 10000);
+}
+
+// בדיקת התנגשות
 function checkCollision() {
-  if (isGameOver) return; // עצור אם המשחק הסתיים
+    if (isGameOver) return;
 
-  const dinoRect = dino.getBoundingClientRect();
-  const obstacleRect = obstacle.getBoundingClientRect();
+    const dinoRect = dino.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
 
-  // מרכז הדינוזאור
-  const dinoCenterX = dinoRect.left + dinoRect.width / 2;
-  const dinoCenterY = dinoRect.top + dinoRect.height / 2;
+    const dinoCenterX = dinoRect.left + dinoRect.width / 2;
+    const dinoCenterY = dinoRect.top + dinoRect.height / 2;
 
-  // מרכז העץ
-  const obstacleCenterX = obstacleRect.left + obstacleRect.width / 2;
-  const obstacleCenterY = obstacleRect.top + obstacleRect.height / 2;
+    const obstacleCenterX = obstacleRect.left + obstacleRect.width / 2;
+    const obstacleCenterY = obstacleRect.top + obstacleRect.height / 2;
 
-  // חישוב מרחק אופקי ואנכי
-  const deltaX = Math.abs(dinoCenterX - obstacleCenterX);
-  const deltaY = Math.abs(dinoCenterY - obstacleCenterY);
+    const deltaX = Math.abs(dinoCenterX - obstacleCenterX);
+    const deltaY = Math.abs(dinoCenterY - obstacleCenterY);
 
-  // הגדרת סף התנגשות
-  const collisionThresholdX = (dinoRect.width + obstacleRect.width) / 2 - 30;
-  const collisionThresholdY = (dinoRect.height + obstacleRect.height) / 2 - 30;
+    const collisionThresholdX = (dinoRect.width + obstacleRect.width) / 2 - 30;
+    const collisionThresholdY = (dinoRect.height + obstacleRect.height) / 2 - 30;
 
-  if (deltaX < collisionThresholdX && deltaY < collisionThresholdY) {
-    isGameOver = true; // מנע התנגשויות נוספות
-    obstacle.classList.add('paused'); // עצור את האנימציה
-    alert('Game Over! Your score: ' + score);
-    resetGame();
-  }
+    if (deltaX < collisionThresholdX && deltaY < collisionThresholdY) {
+        gameOver();
+    }
+}
+
+// הצגת הודעה וכפתור איפוס
+function gameOver() {
+    isGameOver = true;
+    obstacle.classList.add('paused');
+    gameOverMessage.textContent = `Game Over! Your time: ${score}s`;
+    gameOverMessage.style.display = 'block';
+    resetBtn.style.display = 'block';
+    clearInterval(difficultyIncreaseInterval);  // עצירת העלאת הקושי כשהמשחק נגמר
 }
 
 // איפוס המשחק
 function resetGame() {
-  score = 0;
-  gameSpeed = 2000;
-  gameTime=200;
-  isGameOver = false;
-  scoreDisplay.textContent = `Score: ${score}`;
-  obstacle.classList.remove('paused');
-  obstacle.style.animationDuration = `${gameSpeed / gameTime}s`;
-  obstacle.style.right = '-60px';  // החזרת העץ להתחלה
-}
+    score = 0;
+    isGameOver = false;
+    gameOverMessage.style.display = 'none';
+    resetBtn.style.display = 'none';
+    scoreDisplay.textContent = `Timer: ${score}s`;
 
-// העלאת הקושי עם הזמן
-function increaseDifficulty() {
-  if (gameSpeed > 800) {
-    gameSpeed -= 100;
-    gameTime += 10; 
-    // עצירת האנימציה והפעלתה מחדש עם הזמן החדש
-    obstacle.style.animation = 'none'; // עצירה
-    void obstacle.offsetWidth; // טריק לאתחול האנימציה
-    obstacle.style.animation = `moveObstacle ${gameSpeed / gameTime}s linear infinite`; // הפעלה מחדש עם הזמן החדש
-    console.log("gameSpeed= "+gameSpeed);
-    console.log("gameTime= "+gameTime);
-  }
-}
+    obstacle.classList.remove('paused');
+    obstacle.style.right = '-60px';
 
+    obstacleSpeed = 2;  // איפוס מהירות המכשול
+    obstacle.style.animationDuration = `${obstacleSpeed}s`;
+
+    obstacle.style.animation = 'none';
+    setTimeout(() => {
+        obstacle.style.animation = ''; 
+    }, 10);
+
+    dino.style.bottom = '-8px';
+
+    clearInterval(difficultyIncreaseInterval);  // מניעת כפילות
+    startDifficultyTimer();  // הפעלת טיימר מחדש
+}
 
 // עדכון ניקוד
 function updateScore() {
-  if (!isGameOver) {
-    score++;
-    scoreDisplay.textContent = `Score: ${score}`;
-  }
+    if (!isGameOver) {
+        score++;
+        scoreDisplay.textContent = `Timer: ${score}s`;
+    }
+}
+
+// פונקציה לתחילת תנועת המכשול מחדש
+function startObstacleMovement() {
+    obstacle.style.animation = 'moveObstacle 2s infinite linear';
 }
 
 // בדיקת התנגשות כל 10ms
-setInterval(() => {
-  checkCollision();
-}, 10);
+setInterval(checkCollision, 10);
+setInterval(updateScore, 1000);
 
-// עדכון ניקוד וקושי כל שניה
-setInterval(() => {
-  updateScore();
+// הפעלת העלאת רמת קושי עם תחילת המשחק
+startDifficultyTimer();
 
-}, 1000);
-
-setInterval(() => {
-increaseDifficulty();
-},10);
+// הוספת מאזין לכפתור איפוס
+resetBtn.addEventListener('click', () => {
+    resetGame();
+});
