@@ -76,8 +76,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    background-color: #f1f2e7;
+    color: rgb(6, 29, 112);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
