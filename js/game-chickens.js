@@ -1,4 +1,3 @@
-
 const gameArea = document.getElementById("gameArea");
 const player = document.getElementById("player");
 const timerDisplay = document.getElementById("timerDisplay");
@@ -25,23 +24,22 @@ startButton.addEventListener("click", () => {
 });
 
 playAgainButton.addEventListener("click", () => {
-    gameMessage.style.display = "none";; // הסתרת ההודעה
+    gameMessage.style.display = "none"; // Hide the message
     startGame();
 });
 
 function startGame() {
     gameOver = false;
-    gameTime=0;
+    gameTime = 0;
     playerMove();
     createChickenRows();
     startTimer();
 }
 
-
 // Create rows of chickens
 function createChickenRows() {
     const rows = 4; // Number of rows
-     const cols = 8; // Number of columns
+    const cols = 8; // Number of columns
     const chickenSpacingX = 70; // Spacing between chickens on X-axis
     const chickenSpacingY = 60; // Spacing between chickens on Y-axis
     const borderOffset = 55; //
@@ -59,14 +57,13 @@ function createChickenRows() {
 
             // Start movement animation for each chicken
             animateChicken(chicken);
-            if (Math.random() < 0.7) { 
-                chicken.layRate = Math.random() * 15000 + 5000; // קצב בין 10-25 שניות
+            if (Math.random() < 0.7) {
+                chicken.layRate = Math.random() * 15000 + 5000; // Egg rate between 10-25 seconds
                 setTimeout(() => layEgg(chicken), chicken.layRate);
             }
         }
     }
 }
-
 
 // Move the player
 function playerMove() {
@@ -103,34 +100,32 @@ function shootBullet() {
         if (bulletTop <= 0) {
             clearInterval(interval); // Remove the bullet when it exits the frame
             bullet.remove();
-        } 
+        }
         else {
             bullet.style.top = `${bulletTop - 10}px`;
-             // Check for collisions with chickens
-             chickens.forEach((chicken, index) => {
+            // Check for collisions with chickens
+            chickens.forEach((chicken, index) => {
                 if (checkCollision(bullet, chicken)) {
-                    // הסר את הכדור
+                    // Remove the bullet
                     clearInterval(interval);
                     bullet.remove();
-            
-                    // הסר את התרנגולת
+
+                    // Remove the chicken
                     chicken.remove();
                     chickens.splice(index, 1);
-            
-                    // בדוק אם כל התרנגולות הוסרו
+
+                    // Check if all chickens are removed
                     if (chickens.length === 0) {
-                        //endGame(); // סיים את המשחק
-                        endGame("איזה ניצחון!"); // הצג הודעת ניצחון
-                        //clearInterval(timerInterval);
-                        //gameTime=0;
+                        // endGame(); // End the game
+                        endGame("What a win!"); // Show victory message
+                        // clearInterval(timerInterval);
+                        // gameTime=0;
                     }
-                    // יציאה מהלולאה כי הכדור כבר פגע
+                    // Exit the loop because the bullet already hit
                     return;
                 }
             });
-            
         }
-       
     }, 30);
 }
 
@@ -166,7 +161,7 @@ function layEgg(chicken) {
         // Check if the egg hits the player
         if (checkCollision(egg, player)) {
             clearInterval(eggFallInterval);
-            endGame("כלכך קרוב!");
+            endGame("So close!");
         }
     }, 30);
 }
@@ -206,61 +201,43 @@ function checkCollision(obj1, obj2) {
 
 function showWinMessage(ms) {
     messageText.textContent = ms;
-    // הצגת הודעה עם כפתור
+    // Show message with button
     gameMessage.style.display = "block";
-   
 }
 
 function score() {
-    // בדיקה אם הזמן הנוכחי קצר מהשיא הגלובלי ושמירתו
+    // Check if the current time is shorter than the global high score and save it
     if (gameTime > chHighScore || chHighScore === 0) {
-        localStorage.setItem('chHighScore', gameTime); // עדכון השיא הגלובלי
-        alert(`!שיא חדש נקבע: ${gameTime} שניות`); // הודעה לשחקן
+        localStorage.setItem('chHighScore', gameTime); // Update global high score
+        alert(`New High Score: ${gameTime} seconds`); // Alert the player
     }
 
-    // עדכון השיא האישי באובייקט המשתמש
+    // Update the personal high score in the user object
     if (!userDetails.chhighScore || gameTime > userDetails.chhighScore) {
-        userDetails.chhighScore = gameTime; // עדכון השיא האישי
-        localStorage.setItem('userDetails', JSON.stringify(userDetails)); // שמירת האובייקט המעודכן
+        userDetails.chhighScore = gameTime; // Update personal high score
+        localStorage.setItem('userDetails', JSON.stringify(userDetails)); // Save the updated object
     }
 }
 
-// function endGame() {
-//     gameOver = true;
-//     alert("Game Over!");
-
-//     // שמירת שיאים (גלובלי ואישי)
-//     score();
-
-//     // ניקוי המשחק
-//     chickens.forEach(chicken => chicken.remove());
-//     chickens = [];
-//     clearInterval(timerInterval); // עצירת הטיימר
-//     location.reload(); // הפעלה מחדש של המשחק
-// }
-
-
 function startTimer() {
-    
     timerInterval = setInterval(() => {
-        if(!gameOver){
+        if (!gameOver) {
             gameTime++;
-            timerDisplay.textContent = `זמן: ${gameTime} שניות`;
+            timerDisplay.textContent = `Time: ${gameTime} seconds`;
         }
-    }, 1000); // עדכן כל שנייה
+    }, 1000); // Update every second
 }
 
 // End the game
 function endGame(ms) {
-    showWinMessage(ms)
+    showWinMessage(ms);
     gameOver = true;
-    //alert("Game Over!");
+    // alert("Game Over!");
     score();
     chickens.forEach(chicken => chicken.remove());
     chickens = [];
     eggs.forEach(egg => egg.remove());
     eggs = [];
-    clearInterval(timerInterval); // עצור את הטיימר
-    //location.reload(); // Reload the game
-
+    clearInterval(timerInterval); // Stop the timer
+    // location.reload(); // Reload the game
 }

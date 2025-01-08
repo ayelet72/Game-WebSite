@@ -1,46 +1,46 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl"> <!-- Specifies the document type and sets the language to Hebrew with right-to-left direction -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/login.css">
-    <script defer src="../js/login.js"></script>
+    <meta charset="UTF-8"> <!-- Ensures proper character encoding for Hebrew and special characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive to different screen sizes -->
+    <title>Document</title> <!-- Page title placeholder -->
+    <link rel="stylesheet" href="../css/login.css"> <!-- Links external CSS file for login page styling -->
+    <script defer src="../js/login.js"></script> <!-- Links external JavaScript file with defer to load after HTML parsing -->
 </head>
 <body>
-    <header class="nav">
-        <div >
-            <img src="../Images/logo6.5.jpg" alt="logo" id="logo">
+    <header class="nav"> <!-- Navigation header with a class for styling -->
+        <div>
+            <img src="../Images/logo6.5.jpg" alt="logo" id="logo"> <!-- Logo image with alt text for accessibility -->
         </div>
     </header>
     <main>
-        <div class="login-container">
-            <h1>התחברות:</h1>
-            <form id="login-form" class="login-form" action="main.html" method="get">
-                <label for="name"> שם משתמש:</label>
-                <input type="text" id="name" name="name" placeholder="הכנס שם משתמש" required>
+        <div class="login-container"> <!-- Container for the login form -->
+            <h1>התחברות:</h1> <!-- Main heading for login section -->
+            <form id="login-form" class="login-form" action="main.html" method="get"> <!-- Form with GET method to navigate to main.html on submit -->
+                <label for="name"> שם משתמש:</label> <!-- Label for username input -->
+                <input type="text" id="name" name="name" placeholder="הכנס שם משתמש" required> <!-- Username input field, required for submission -->
                 <br>
                 
-                <label for="password">סיסמא:</label>
-                <input type="password" id="password" name="password" placeholder="חייב להכיל לפחות 6 תוים" required>
-                <div error-for="password" id="passerror" class="passerror" role="alert" style="display: none;" aria-live="assertive">
+                <label for="password">סיסמא:</label> <!-- Label for password input -->
+                <input type="password" id="password" name="password" placeholder="חייב להכיל לפחות 6 תוים" required> <!-- Password input, must be filled to submit -->
+                <div error-for="password" id="passerror" class="passerror" role="alert" style="display: none;" aria-live="assertive"> <!-- Password error message hidden by default -->
                     הסיסמה שסיפקת חייבת להכיל 6 תווים לפחות.</div>
-                <label for="checkbox"> <input name="checkbox" type="checkbox" id="showPassword">הצג סיסמא </label>
-                <label for="remember-me"> <input name="remember-me" type="checkbox" id="remember-me"> זכור אותי </label>
+                <label for="checkbox"> <input name="checkbox" type="checkbox" id="showPassword">הצג סיסמא </label> <!-- Checkbox to toggle password visibility -->
+                <label for="remember-me"> <input name="remember-me" type="checkbox" id="remember-me"> זכור אותי </label> <!-- Checkbox for remember-me option -->
                 <script>
                     document.getElementById('showPassword').addEventListener('change', (event) => {
                          const passwordInput = document.getElementById('password');
                         passwordInput.type = event.target.checked ? 'text' : 'password';
-                    });
+                    }); <!-- JavaScript to toggle password visibility on checkbox change -->
                 </script>
-                <div id="error"></div>
+                <div id="error"></div> <!-- General error message container -->
                 <br>
-                <div error-for="password" id="wrong" class="wrong" role="alert" style="display: none;" aria-live="assertive">
+                <div error-for="password" id="wrong" class="wrong" role="alert" style="display: none;" aria-live="assertive"> <!-- Wrong password or username message, hidden by default -->
                     שם משתמש או סיסמא שגויים!</div>
-                <button type="submit">התחילו לשחק!</button>
+                <button type="submit">התחילו לשחק!</button> <!-- Submit button to proceed to the game -->
             </form>
         </div>
-        <h4>פעם ראשונה? <a href="sign.html">הירשמו כאן</a>    /    שכחת סיסמא? <a href="sign.html">לחץ כאן</a></h4>
+        <h4>פעם ראשונה? <a href="sign.html">הירשמו כאן</a>    /    שכחת סיסמא? <a href="sign.html">לחץ כאן</a></h4> <!-- Links to signup and forgot password pages -->
 
     </main>
 

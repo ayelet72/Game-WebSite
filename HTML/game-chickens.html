@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chicken Game</title>
+    <!-- Link to the CSS file for the Chicken game -->
     <link rel="stylesheet" href="../CSS/game-chickens.css">
-    <script defer src="../js/game-chickens.js"></script></head>
+    <!-- Link to the JavaScript file for the Chicken game -->
+    <script defer src="../js/game-chickens.js"></script>
 </head>
 <body>
-     <!-- קישור לעמוד הראשי במקום הלוגו -->
-     <div id="logo">
+    <!-- Logo linking back to the main page -->
+    <div id="logo">
         <a href="main.html">
             <img src="../Images/logo6.jpg" alt="Game Logo">
         </a>
     </div>
 
+    <!-- Main game area -->
     <div id="gameArea">
+        <!-- Player's character -->
         <div id="player" class="player"></div>
+
+        <!-- Timer display showing the elapsed time -->
         <div id="timerDisplay">זמן: 0 שניות</div>
+
+        <!-- Message area for game over or winning messages -->
         <div id="gameMessage" class="hidden">
             <p id="messageText"></p>
+            <!-- Button to replay the game -->
             <button id="playAgain">Play Again</button>
         </div>
     </div>
-    <button id="startButton" type="button">Play!</button>
 
-    
+    <!-- Button to start the game -->
+    <button id="startButton" type="button">Play!</button>
 </body>
 </html>
