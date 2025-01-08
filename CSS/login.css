@@ -43,6 +43,7 @@ h1{
     text-align: center;
     color: #0c022b;
     margin:0px
+    
 }
 .login-form{
     display: flex !important;
@@ -67,10 +68,10 @@ label[for="remember-me"], label[for="checkbox"] {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 16px;
+    font-size: 12px;
 }
 input[type="checkbox"] {
-    width: 16px;
+    width: 16wpx;
     height: 16px;
 }
 

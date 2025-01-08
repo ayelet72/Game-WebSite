@@ -8,8 +8,20 @@
     <script defer src="../js/game-chickens.js"></script></head>
 </head>
 <body>
+     <!-- קישור לעמוד הראשי במקום הלוגו -->
+     <div id="logo">
+        <a href="main.html">
+            <img src="../Images/logo6.jpg" alt="Game Logo">
+        </a>
+    </div>
+
     <div id="gameArea">
         <div id="player" class="player"></div>
+        <div id="timerDisplay">זמן: 0 שניות</div>
+        <div id="gameMessage" class="hidden">
+            <p id="messageText"></p>
+            <button id="playAgain">Play Again</button>
+        </div>
     </div>
     <button id="startButton" type="button">Play!</button>
 

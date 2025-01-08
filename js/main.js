@@ -1,22 +1,30 @@
 window.addEventListener('DOMContentLoaded', function () {
     const userDetails = JSON.parse(localStorage.getItem('userDetails'));
     const globalHighScore = localStorage.getItem('globalHighScore') || 0; // שמירת השיא הגלובלי
+    const chHighScore = localStorage.getItem('chHighScore') || 0;
     const welcomeMessage = document.getElementById('welcome-message');
     const userStats = document.getElementById('user-stats');
     const loginLink = document.getElementById('login-link');
 
     if (userDetails) {
-        const highScore = Math.max(userDetails.highScore || 0, globalHighScore); // השיא הגבוה ביותר
+        const highScore = Math.max(userDetails.highScore || 0, globalHighScore); //  דינו - השיא הגבוה ביותר
+        const chhighScore = Math.max(userDetails.chhighScore || 0, chHighScore);// השיר הגבוה ביותר תרנגולות
         welcomeMessage.textContent = `ברוך הבא, ${localStorage.getItem('loggedInUser')}!`;
 
         userStats.innerHTML = `
             אימייל: ${userDetails.email}<br>
             שיא במשחק הדינוזאור: ${highScore}s
+            שיא במשחק התרנגולות: ${chhighScore}s
         `;
 
         // עדכון השיא הגלובלי במידה והשיא במשתמש הנוכחי גבוה יותר
         if (userDetails.highScore > globalHighScore) {
             localStorage.setItem('globalHighScore', userDetails.highScore);
+        }
+
+        // עדכון השיא הגלובלי במידה והשיא במשתמש הנוכחי גבוה יותר
+        if (userDetails.chhighScore < chHighScore) {
+            localStorage.setItem('chHighScore', userDetails.chhighScore);
         }
 
         // שינוי הקישור להתנתקות

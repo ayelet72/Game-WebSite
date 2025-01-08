@@ -1,13 +1,21 @@
 body {
     margin: 0;
     overflow: hidden;
+    background-color:rgb(26 15 83);
+  }
+  #logo{
+    position: absolute;  /* מיקום של הלוגו יחסית לגוף הדף */
+    top: 20px;  /* מרחק מהחלק העליון של המסך */
+    right: 150px;  /* מרחק מהחלק השמאלי של המסך */
+    width: 100px;  /* קביעת גודל הלוגו */
+    height: auto;  /* שמירה על יחס הגובה-רוחב */
   }
   #gameArea {
     width: 600px;  
     height: 500px;  
     position: relative;
     margin: 50px auto; 
-    border: 3px solid black; /* גבול לריבוע */
+    border: 3px solid #f1f2e7; /* גבול לריבוע */
     background-color: rgb(1, 1, 59);
     z-index: 1000000;
     overflow: hidden;
@@ -16,18 +24,19 @@ body {
     position: absolute; /* השתנה ל-absolute כדי לאפשר מיקום יחסי להורה */
     width: 50px;
     height: 50px;
-    background-image: url(../Images/game-chicken/weapond.jpeg);
+    background-image:url(../Images/game-chicken/weapond.jpeg);
     background-size: cover;
     bottom: 10px; 
     left: 50%; 
+    right: 50%;
     transform: translateX(-50%); /* כדי שמרכז השחקן יתיישר בדיוק לאמצע */
   }
   .chicken{
     position: absolute; /* השתנה ל-absolute כדי לאפשר מיקום יחסי להורה */
-    width: 50px;
-    height: 50px;
-    background-image: url(../Images/game-chicken/chicken.jpeg)no-repeat center/cover;
-    background-size: cover;
+    width: 40px;
+    height: 40px;
+    background-image: url(../Images/game-chicken/chicken.jpeg);
+    /* background-size: cover; */
     background-size: contain;
   }
 
@@ -57,3 +66,47 @@ body {
     position: absolute;
     background: url(../Images/game-chicken/bullet.jpg) no-repeat center/cover;
   }
+
+.hidden {
+    display: none;
+}
+
+#gameMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+}
+
+#playAgain {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#timerDisplay {
+  position: absolute; /* כדי למקם את הטיימר במיקום מותאם בתוך המשחק */
+  top: 10px; /* רווח מהחלק העליון */
+  right: 10px; /* רווח מהצד הימני */
+  font-size: 20px; /* גודל הטקסט */
+  font-weight: bold; /* הדגשת הטקסט */
+  color: rgb(1, 1, 59);
+  background-color: #f1f2e7;
+  padding: 10px 15px;
+  border-radius: 2px;
+  box-shadow: 7px 0px 20px 0px #f1f2e78a;
+  z-index: 100; /* כדי שהטיימר תמיד ייראה מעל כל האלמנטים */
+  text-align: center; /* יישור הטקסט למרכז */
+  font-family: Arial, sans-serif; /* פונט קריא */
+}

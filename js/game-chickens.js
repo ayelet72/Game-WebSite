@@ -1,12 +1,19 @@
 
 const gameArea = document.getElementById("gameArea");
 const player = document.getElementById("player");
+const timerDisplay = document.getElementById("timerDisplay");
+
+const gameMessage = document.getElementById("gameMessage");
+const messageText = document.getElementById("messageText");
+const playAgainButton = document.getElementById("playAgain");
+
+const chHighScore = parseInt(localStorage.getItem('chHighScore') || 0);
+const userDetails = JSON.parse(localStorage.getItem('userDetails')) || {};
 
 let chickens = [];
-let bullets = [];
-let eggs = [];
 let gameOver = false;
-
+let gameTime=0;
+let timerInterval;
 const gameAreaWidth = gameArea.offsetWidth;
 const gameAreaHeight = gameArea.offsetHeight;
 
@@ -18,19 +25,22 @@ startButton.addEventListener("click", () => {
 
 function startGame() {
     gameOver = false;
+    gameTime=0;
     playerMove();
     createChickenRows();
-    
+    startTimer();
 }
+
 
 // Create rows of chickens
 function createChickenRows() {
     const rows = 4; // Number of rows
-    const cols = 10; // Number of columns
+     const cols = 10; // Number of columns
     const chickenSpacingX = 70; // Spacing between chickens on X-axis
     const chickenSpacingY = 60; // Spacing between chickens on Y-axis
-    const startX = 20; // Starting position on X-axis
-    const startY = 20; // Starting position on Y-axis
+    const borderOffset = 55; //
+    const startX = borderOffset; // Starting position on X-axis
+    const startY = borderOffset; // Starting position on Y-axis
 
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
@@ -41,11 +51,12 @@ function createChickenRows() {
             gameArea.appendChild(chicken);
             chickens.push(chicken);
 
-            // // Start movement animation for each chicken
-            // animateChicken(chicken);
-
-            // Start egg-laying with random intervals
-            setTimeout(() => layEgg(chicken), Math.random() * 10000 + 5000);
+            // Start movement animation for each chicken
+            animateChicken(chicken);
+            if (Math.random() < 0.7) { 
+                chicken.layRate = Math.random() * 15000 + 5000; // קצב בין 10-25 שניות
+                setTimeout(() => layEgg(chicken), chicken.layRate);
+            }
         }
     }
 }
@@ -86,8 +97,39 @@ function shootBullet() {
         if (bulletTop <= 0) {
             clearInterval(interval); // Remove the bullet when it exits the frame
             bullet.remove();
-        } else {
+        } 
+        else {
             bullet.style.top = `${bulletTop - 10}px`;
+             // Check for collisions with chickens
+             chickens.forEach((chicken, index) => {
+                if (checkCollision(bullet, chicken)) {
+                    // הסר את הכדור
+                    clearInterval(interval);
+                    bullet.remove();
+            
+                    // הסר את התרנגולת
+                    chicken.remove();
+                    chickens.splice(index, 1);
+            
+                    // בדוק אם כל התרנגולות הוסרו
+                    if (chickens.length === 0) {
+                        //endGame(); // סיים את המשחק
+                        showWinMessage(); // הצג הודעת ניצחון
+                        clearInterval(timerInterval);
+                        // // שמירת השיא אם הוא נמוך מהשיא הגלובלי
+                        // const chHighScore = parseInt(localStorage.getItem('chHighScore') || 0);
+                        // if (userDetails.chhighScore < gameTime) {
+                        //     localStorage.setItem('chHighScore', gameTime); // עדכון שיא גלובלי
+                        //     userDetails.chhighScore = gameTime; // עדכון באובייקט המשתמש
+                        //     localStorage.setItem('userDetails', JSON.stringify(userDetails)); // שמירת המשתמש המעודכן
+                        // }
+                        gameTime=0;
+                    }
+                    // יציאה מהלולאה כי הכדור כבר פגע
+                    return;
+                }
+            });
+            
         }
        
     }, 30);
@@ -125,6 +167,7 @@ function layEgg(chicken) {
         if (checkCollision(egg, player)) {
             clearInterval(eggFallInterval);
             endGame();
+            score();
         }
     }, 30);
 }
@@ -162,9 +205,53 @@ function checkCollision(obj1, obj2) {
     );
 }
 
+function showWinMessage() {
+   
+    messageText.textContent = "איזה ניצחון!";
+
+    // הצגת הודעה עם כפתור
+    gameMessage.style.display = "block";
+
+    // לחיצה על הכפתור מפעילה משחק מחדש
+    playAgainButton.addEventListener("click", () => {
+        gameMessage.style.display = "none";; // הסתרת ההודעה
+        startGame();
+    });
+
+}
+
+function score(){
+    // שמירת השיא הגלובלי למשחק התרנגולות אם השיא הנוכחי גבוה יותר
+    if (gameTime < chHighScore) {
+        localStorage.setItem('chHighScore', gameTime); // עדכון השיא הגלובלי
+    }
+
+    // עדכון באובייקט המשתמש אם השיא שלו גבוה יותר
+    if (gameTime < (userDetails.chhighScore || 0)) {
+        userDetails.chhighScore = gameTime;
+        localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    }
+}
+
+function startTimer() {
+    
+    timerInterval = setInterval(() => {
+        if(!gameOver){
+            gameTime++;
+            timerDisplay.textContent = `זמן: ${gameTime} שניות`;
+        }
+    }, 1000); // עדכן כל שנייה
+}
+
 // End the game
 function endGame() {
     gameOver = true;
     alert("Game Over!");
+    //saveBestTime(gameTime); // שמירת הזמן הנוכחי אם הוא הזמן הקצר ביותר
+    chickens.forEach(chicken => chicken.remove());
+    chickens = [];
+    clearInterval(timerInterval); // עצור את הטיימר
     location.reload(); // Reload the game
+
+    
 }
