@@ -225,20 +225,6 @@ function score() {
     }
 }
 
-// function endGame() {
-//     gameOver = true;
-//     alert("Game Over!");
-
-//     // שמירת שיאים (גלובלי ואישי)
-//     score();
-
-//     // ניקוי המשחק
-//     chickens.forEach(chicken => chicken.remove());
-//     chickens = [];
-//     clearInterval(timerInterval); // עצירת הטיימר
-//     location.reload(); // הפעלה מחדש של המשחק
-// }
-
 
 function startTimer() {
     
