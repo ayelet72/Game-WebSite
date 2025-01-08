@@ -6,13 +6,11 @@ const resetBtn = document.getElementById('reset-btn');
 
 let isJumping = false;
 let score = 0;
-let gameSpeed = 2000;
-let gameTime = 200;
 let isGameOver = false;
 
 // משתנים להעלאת רמת קושי
 let difficultyIncreaseInterval;
-let obstacleSpeed = 2;  // מהירות התחלתית של המכשול
+let obstacleSpeed = 2; // מהירות התחלתית של המכשול
 
 // קפיצה כאשר לוחצים על מקש הרווח
 document.addEventListener('keydown', (event) => {
@@ -49,7 +47,7 @@ function increaseDifficulty() {
     if (isGameOver) return;
 
     obstacleSpeed -= 0.2;
-    const newSpeed = Math.max(0.8, obstacleSpeed);  // הגבלת מהירות מינימלית
+    const newSpeed = Math.max(0.8, obstacleSpeed); // הגבלת מהירות מינימלית
     obstacle.style.animationDuration = `${newSpeed}s`;
 }
 
@@ -89,7 +87,21 @@ function gameOver() {
     gameOverMessage.textContent = `Game Over! Your time: ${score}s`;
     gameOverMessage.style.display = 'block';
     resetBtn.style.display = 'block';
-    clearInterval(difficultyIncreaseInterval);  // עצירת העלאת הקושי כשהמשחק נגמר
+
+    // שמירת השיא אם הוא גבוה יותר מהשיא הגלובלי
+    const globalHighScore = parseInt(localStorage.getItem('globalHighScore') || 0);
+    if (score > globalHighScore) {
+        localStorage.setItem('globalHighScore', score);
+    }
+
+    // שמירת השיא גם באובייקט המשתמש, אם הוא מחובר
+    const userDetails = JSON.parse(localStorage.getItem('userDetails')) || {};
+    if (score > (userDetails.highScore || 0)) {
+        userDetails.highScore = score;
+        localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    }
+
+    clearInterval(difficultyIncreaseInterval); // עצירת העלאת הקושי כשהמשחק נגמר
 }
 
 // איפוס המשחק
@@ -103,18 +115,18 @@ function resetGame() {
     obstacle.classList.remove('paused');
     obstacle.style.right = '-60px';
 
-    obstacleSpeed = 2;  // איפוס מהירות המכשול
+    obstacleSpeed = 2; // איפוס מהירות המכשול
     obstacle.style.animationDuration = `${obstacleSpeed}s`;
 
     obstacle.style.animation = 'none';
     setTimeout(() => {
-        obstacle.style.animation = ''; 
+        obstacle.style.animation = '';
     }, 10);
 
     dino.style.bottom = '-8px';
 
-    clearInterval(difficultyIncreaseInterval);  // מניעת כפילות
-    startDifficultyTimer();  // הפעלת טיימר מחדש
+    clearInterval(difficultyIncreaseInterval); // מניעת כפילות
+    startDifficultyTimer(); // הפעלת טיימר מחדש
 }
 
 // עדכון ניקוד
@@ -123,11 +135,6 @@ function updateScore() {
         score++;
         scoreDisplay.textContent = `Timer: ${score}s`;
     }
-}
-
-// פונקציה לתחילת תנועת המכשול מחדש
-function startObstacleMovement() {
-    obstacle.style.animation = 'moveObstacle 2s infinite linear';
 }
 
 // בדיקת התנגשות כל 10ms

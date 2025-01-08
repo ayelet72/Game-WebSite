@@ -1,9 +1,8 @@
-body{
+body{ 
     align-items: center;
     background-color:rgb(26 15 83);
     line-height: 1.6;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
 img{
@@ -18,11 +17,11 @@ main{
     margin-top: 50px;
     display: flex;
     justify-content: center;
-    flex-direction: column;                                                                                                                                                                                             
+    flex-direction: column;                                                                                                                                                                                               
     width: 100%; 
     align-items: center;
     margin-top: 15px;
-     
+    
 }
 .login-container {
     display: flex !important;
@@ -62,6 +61,19 @@ h1{
     align-items: center;
     color: rgb(4, 0, 44);
 }
+
+/* תיקון יישור עבור זכור אותי והצג סיסמא */
+label[for="remember-me"], label[for="checkbox"] {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+}
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
 .passerror {
     size: 10px;
     margin: 4px 0 0 0;
@@ -86,10 +98,14 @@ h1{
     color: aliceblue;
 }
 #showPassword{
-    width:8px;
-    display: flex;
-    align-self: center;
-    padding-top: 2px;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+#remember-me{
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
 }
 input{
     border-radius:5%;
@@ -104,11 +120,6 @@ input{
     padding: 12px 12px 6px!important;
     color: var(--color-text, rgba(0, 0, 0, 0.9)) !important;
     border-radius: 5px !important;
-
-}
-#showPassword{
-    size:3px;
-    padding:0px;
 }
 h4{
     padding-right: 20px;
@@ -118,9 +129,8 @@ h4{
 }
 .contact-form button:hover {
     background-color: #575353;
-     
+    
 }
-
 a{
     color: #1385ff;
 }

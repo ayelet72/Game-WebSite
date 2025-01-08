@@ -1,69 +1,42 @@
-document.getElementById('login-form').addEventListener("submit", (ev) => {
-    ev.preventDefault();
+document.getElementById('login-form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-    // שליפת הערכים מהשדות
-    const userName = document.getElementById("name").value.trim();
-    const pass = document.getElementById("password").value;
+    const username = document.getElementById('name').value.trim();
+    const password = document.getElementById('password').value;
+    const rememberMe = document.getElementById('rememberMe') ? document.getElementById('rememberMe').checked : false;
 
-    // שליפת נתוני המשתמשים מה-localStorage
+    const errorDiv = document.getElementById('wrong');
+
+    // שליפת המשתמשים מה-localStorage
     const users = JSON.parse(localStorage.getItem('users')) || {};
-    const attempts = JSON.parse(localStorage.getItem('loginAttempts')) || {};
 
-    const user = users[userName]; // שליפת המשתמש
-    const wrongError = document.getElementById('wrong');
-    const passwordError = document.getElementById('passerror');
-    document.cookie = "testCookie=12345; path=/; max-age=3600";
+    // בדיקה האם המשתמש קיים והסיסמה תואמת
+    if (users[username] && users[username].password === password) {
+        // שמירת המשתמש המחובר ב-localStorage
+        localStorage.setItem('loggedInUser', username);
+        localStorage.setItem('userDetails', JSON.stringify(users[username]));
 
-    // בדיקת סיסמה קצרה מדי
-    if (pass.length < 6) {
-        passwordError.style.display = "block";
-        return;
-    } else {
-        passwordError.style.display = "none";
-    }
-
-    // בדיקת אם המשתמש חסום
-    if (attempts[userName] && attempts[userName].isBlocked) {
-        alert("המשתמש חסום לאחר 5 ניסיונות כושלים.");
-        return;
-    }
-
-    // אימות המשתמש והסיסמה
-    if (user && user.password === pass) {
-        // הסרת ניסיונות כושלים
-        delete attempts[userName];
-        localStorage.setItem('loginAttempts', JSON.stringify(attempts));
-
-        // שמירת שם המשתמש בעוגייה
-        document.cookie = `username=${encodeURIComponent(userName)}; path=/; max-age=3600`;
-
-    // בדיקה אם העוגייה נשמרה
-    if (document.cookie.includes("testCookie=12345")) {
-        console.log("עוגיות נתמכות ונשמרות בהצלחה.");
-    } else {
-        console.error("עוגיות לא נשמרות. ודאי שאין חסימה בדפדפן.");
-    }
-
-        // מעבר לדף הראשי
-        window.location.href = "main.html";
-        wrongError.style.display = "none";
-    } else {
-        // אם הסיסמה לא נכונה, הצגת הודעת שגיאה
-        wrongError.style.display = "block";
-
-        // ניהול ניסיונות התחברות
-        if (!attempts[userName]) {
-            attempts[userName] = { count: 0, isBlocked: false };
+        // שמירת שם משתמש ב-cookie במידה והתיבה מסומנת
+        if (rememberMe) {
+            document.cookie = `username=${username}; path=/; max-age=${60 * 60 * 24 * 7}`; // שמירה לשבוע
         }
-        attempts[userName].count++;
 
-        if (attempts[userName].count >= 5) {
-            attempts[userName].isBlocked = true;
-            alert("המשתמש נחסם לאחר 5 ניסיונות כושלים.");
+        // הפניה לעמוד הראשי
+        window.location.href = 'main.html';
+    } else {
+        errorDiv.textContent = 'שם משתמש או סיסמא שגויים!';
+        errorDiv.style.display = 'block';
+    }
+});
+
+// מילוי אוטומטי של שם משתמש מה-cookie אם קיים
+window.addEventListener('DOMContentLoaded', () => {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'username') {
+            document.getElementById('name').value = value;
+            break;
         }
-        
-
-        // עדכון ניסיונות ב-localStorage
-        localStorage.setItem('loginAttempts', JSON.stringify(attempts));
     }
 });

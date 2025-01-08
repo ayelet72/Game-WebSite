@@ -28,18 +28,18 @@ document.getElementById('signup-form').addEventListener('submit', function (even
     users[username] = {
         email: email,
         password: password,
-        achievements: [], // השגים
-        loginAttempts: 0  // נסיונות התחברות
+        achievements: [],
+        loginAttempts: 0
     };
 
     // שמירה ב-LocalStorage
     localStorage.setItem('users', JSON.stringify(users));
 
-    // שמירת שם המשתמש בעוגייה
-    document.cookie = `username=${username}; path=/; max-age=3600`;  // שמירת העוגייה ללא secure
+    // שמירת שם המשתמש ב-localStorage
+    localStorage.setItem('loggedInUser', username);
 
-    // בדיקת שמירת העוגיה
-    console.log("עוגייה שנשמרה: ", document.cookie);
+    // בדיקת שמירת הנתון
+    console.log("שם המשתמש שנשמר ב-localStorage: ", localStorage.getItem('loggedInUser'));
 
     alert('נרשמת בהצלחה!');
     window.location.href = 'login.html';
