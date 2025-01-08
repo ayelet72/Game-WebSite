@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // שליפת שם המשתמש מהעוגיות
-    const username = getCookie("username");
+    const username = document.getCookie("username");
 
     // הדפסת העוגיות לקונסול
     console.log("עוגיות בדף ראשי: ", document.cookie);
