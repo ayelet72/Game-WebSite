@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         // עדכון השיא הגלובלי במידה והשיא במשתמש הנוכחי גבוה יותר
-        if (userDetails.chhighScore < chHighScore) {
+        if (userDetails.chhighScore > chHighScore) {
             localStorage.setItem('chHighScore', userDetails.chhighScore);
         }
 

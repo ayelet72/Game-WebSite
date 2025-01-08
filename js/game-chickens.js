@@ -220,18 +220,34 @@ function showWinMessage() {
 
 }
 
-function score(){
-    // שמירת השיא הגלובלי למשחק התרנגולות אם השיא הנוכחי גבוה יותר
-    if (gameTime < chHighScore) {
+function score() {
+    // בדיקה אם הזמן הנוכחי קצר מהשיא הגלובלי ושמירתו
+    if (gameTime < chHighScore || chHighScore === 0) {
         localStorage.setItem('chHighScore', gameTime); // עדכון השיא הגלובלי
+        alert(`!שיא חדש נקבע: ${gameTime} שניות`); // הודעה לשחקן
     }
 
-    // עדכון באובייקט המשתמש אם השיא שלו גבוה יותר
-    if (gameTime < (userDetails.chhighScore || 0)) {
-        userDetails.chhighScore = gameTime;
-        localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    // עדכון השיא האישי באובייקט המשתמש
+    if (!userDetails.chhighScore || gameTime < userDetails.chhighScore) {
+        userDetails.chhighScore = gameTime; // עדכון השיא האישי
+        localStorage.setItem('userDetails', JSON.stringify(userDetails)); // שמירת האובייקט המעודכן
     }
 }
+
+function endGame() {
+    gameOver = true;
+    alert("Game Over!");
+
+    // שמירת שיאים (גלובלי ואישי)
+    score();
+
+    // ניקוי המשחק
+    chickens.forEach(chicken => chicken.remove());
+    chickens = [];
+    clearInterval(timerInterval); // עצירת הטיימר
+    location.reload(); // הפעלה מחדש של המשחק
+}
+
 
 function startTimer() {
     
@@ -243,15 +259,15 @@ function startTimer() {
     }, 1000); // עדכן כל שנייה
 }
 
-// End the game
-function endGame() {
-    gameOver = true;
-    alert("Game Over!");
-    //saveBestTime(gameTime); // שמירת הזמן הנוכחי אם הוא הזמן הקצר ביותר
-    chickens.forEach(chicken => chicken.remove());
-    chickens = [];
-    clearInterval(timerInterval); // עצור את הטיימר
-    location.reload(); // Reload the game
+// // End the game
+// function endGame() {
+//     gameOver = true;
+//     alert("Game Over!");
+//     //saveBestTime(gameTime); // שמירת הזמן הנוכחי אם הוא הזמן הקצר ביותר
+//     chickens.forEach(chicken => chicken.remove());
+//     chickens = [];
+//     clearInterval(timerInterval); // עצור את הטיימר
+//     location.reload(); // Reload the game
 
     
-}
+// }
