@@ -11,6 +11,7 @@ const chHighScore = parseInt(localStorage.getItem('chHighScore') || 0);
 const userDetails = JSON.parse(localStorage.getItem('userDetails')) || {};
 
 let chickens = [];
+let eggs = [];
 let gameOver = false;
 let gameTime=0;
 let timerInterval;
@@ -20,6 +21,11 @@ const gameAreaHeight = gameArea.offsetHeight;
 // Start the game by clicking the button
 startButton.addEventListener("click", () => {
     startButton.style.display = "none"; // Hide the button
+    startGame();
+});
+
+playAgainButton.addEventListener("click", () => {
+    gameMessage.style.display = "none";; // הסתרת ההודעה
     startGame();
 });
 
@@ -35,7 +41,7 @@ function startGame() {
 // Create rows of chickens
 function createChickenRows() {
     const rows = 4; // Number of rows
-     const cols = 10; // Number of columns
+     const cols = 8; // Number of columns
     const chickenSpacingX = 70; // Spacing between chickens on X-axis
     const chickenSpacingY = 60; // Spacing between chickens on Y-axis
     const borderOffset = 55; //
@@ -114,16 +120,9 @@ function shootBullet() {
                     // בדוק אם כל התרנגולות הוסרו
                     if (chickens.length === 0) {
                         //endGame(); // סיים את המשחק
-                        showWinMessage(); // הצג הודעת ניצחון
-                        clearInterval(timerInterval);
-                        // // שמירת השיא אם הוא נמוך מהשיא הגלובלי
-                        // const chHighScore = parseInt(localStorage.getItem('chHighScore') || 0);
-                        // if (userDetails.chhighScore < gameTime) {
-                        //     localStorage.setItem('chHighScore', gameTime); // עדכון שיא גלובלי
-                        //     userDetails.chhighScore = gameTime; // עדכון באובייקט המשתמש
-                        //     localStorage.setItem('userDetails', JSON.stringify(userDetails)); // שמירת המשתמש המעודכן
-                        // }
-                        gameTime=0;
+                        endGame("איזה ניצחון!"); // הצג הודעת ניצחון
+                        //clearInterval(timerInterval);
+                        //gameTime=0;
                     }
                     // יציאה מהלולאה כי הכדור כבר פגע
                     return;
@@ -141,6 +140,7 @@ function layEgg(chicken) {
 
     const egg = document.createElement("div");
     egg.classList.add("egg");
+    eggs.push(egg);
 
     // Set the initial position based on the chicken
     egg.style.left = `${chicken.offsetLeft + chicken.offsetWidth / 2 - 10}px`;
@@ -166,8 +166,7 @@ function layEgg(chicken) {
         // Check if the egg hits the player
         if (checkCollision(egg, player)) {
             clearInterval(eggFallInterval);
-            endGame();
-            score();
+            endGame("כלכך קרוב!");
         }
     }, 30);
 }
@@ -205,48 +204,40 @@ function checkCollision(obj1, obj2) {
     );
 }
 
-function showWinMessage() {
-   
-    messageText.textContent = "איזה ניצחון!";
-
+function showWinMessage(ms) {
+    messageText.textContent = ms;
     // הצגת הודעה עם כפתור
     gameMessage.style.display = "block";
-
-    // לחיצה על הכפתור מפעילה משחק מחדש
-    playAgainButton.addEventListener("click", () => {
-        gameMessage.style.display = "none";; // הסתרת ההודעה
-        startGame();
-    });
-
+   
 }
 
 function score() {
     // בדיקה אם הזמן הנוכחי קצר מהשיא הגלובלי ושמירתו
-    if (gameTime < chHighScore || chHighScore === 0) {
+    if (gameTime > chHighScore || chHighScore === 0) {
         localStorage.setItem('chHighScore', gameTime); // עדכון השיא הגלובלי
         alert(`!שיא חדש נקבע: ${gameTime} שניות`); // הודעה לשחקן
     }
 
     // עדכון השיא האישי באובייקט המשתמש
-    if (!userDetails.chhighScore || gameTime < userDetails.chhighScore) {
+    if (!userDetails.chhighScore || gameTime > userDetails.chhighScore) {
         userDetails.chhighScore = gameTime; // עדכון השיא האישי
         localStorage.setItem('userDetails', JSON.stringify(userDetails)); // שמירת האובייקט המעודכן
     }
 }
 
-function endGame() {
-    gameOver = true;
-    alert("Game Over!");
+// function endGame() {
+//     gameOver = true;
+//     alert("Game Over!");
 
-    // שמירת שיאים (גלובלי ואישי)
-    score();
+//     // שמירת שיאים (גלובלי ואישי)
+//     score();
 
-    // ניקוי המשחק
-    chickens.forEach(chicken => chicken.remove());
-    chickens = [];
-    clearInterval(timerInterval); // עצירת הטיימר
-    location.reload(); // הפעלה מחדש של המשחק
-}
+//     // ניקוי המשחק
+//     chickens.forEach(chicken => chicken.remove());
+//     chickens = [];
+//     clearInterval(timerInterval); // עצירת הטיימר
+//     location.reload(); // הפעלה מחדש של המשחק
+// }
 
 
 function startTimer() {
@@ -259,15 +250,17 @@ function startTimer() {
     }, 1000); // עדכן כל שנייה
 }
 
-// // End the game
-// function endGame() {
-//     gameOver = true;
-//     alert("Game Over!");
-//     //saveBestTime(gameTime); // שמירת הזמן הנוכחי אם הוא הזמן הקצר ביותר
-//     chickens.forEach(chicken => chicken.remove());
-//     chickens = [];
-//     clearInterval(timerInterval); // עצור את הטיימר
-//     location.reload(); // Reload the game
+// End the game
+function endGame(ms) {
+    showWinMessage(ms)
+    gameOver = true;
+    //alert("Game Over!");
+    score();
+    chickens.forEach(chicken => chicken.remove());
+    chickens = [];
+    eggs.forEach(egg => egg.remove());
+    eggs = [];
+    clearInterval(timerInterval); // עצור את הטיימר
+    //location.reload(); // Reload the game
 
-    
-// }
+}
