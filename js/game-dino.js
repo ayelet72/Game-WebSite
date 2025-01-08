@@ -55,7 +55,7 @@ function increaseDifficulty() {
 
 // התחלת טיימר להעלאת רמת קושי כל 10 שניות
 function startDifficultyTimer() {
-    difficultyIncreaseInterval = setInterval(increaseDifficulty, 10000);
+    difficultyIncreaseInterval = setInterval(increaseDifficulty, 4000);
 }
 
 // בדיקת התנגשות
