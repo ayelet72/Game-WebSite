@@ -44,9 +44,9 @@ document.getElementById('login-form').addEventListener("submit", (ev) => {
         console.error("עוגיות לא נשמרות. ודאי שאין חסימה בדפדפן.");
     }
 
-        // // מעבר לדף הראשי
-        // window.location.href = "main.html";
-        // wrongError.style.display = "none";
+        // מעבר לדף הראשי
+        window.location.href = "main.html";
+        wrongError.style.display = "none";
     } else {
         // אם הסיסמה לא נכונה, הצגת הודעת שגיאה
         wrongError.style.display = "block";
