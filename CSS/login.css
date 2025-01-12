@@ -1,137 +1,167 @@
-body{ 
-    align-items: center;
-    background-color:rgb(26 15 83);
-    line-height: 1.6;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* General body styling */
+body { 
+    align-items: center; /* Center alignment for flexbox children */
+    background-color: rgb(26, 15, 83); /* Dark purple background color */
+    line-height: 1.6; /* Line spacing for better readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font styling */
 }
 
-img{
-    size:150px 150px;
+/* General image styling */
+img {
+    size: 150px 150px; /* Define image size (not valid CSS, should use width and height) */
 }
-.nav{
-    padding-top: 0px;
-    color: #575353;
-    z-index: 2;
+
+/* Styling for the navigation section */
+.nav {
+    padding-top: 0px; /* Remove top padding */
+    color: #575353; /* Gray text color */
+    z-index: 2; /* Ensure navigation is above other elements */
 }
-main{
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;                                                                                                                                                                                               
-    width: 100%; 
-    align-items: center;
-    margin-top: 15px;
-    
+
+/* Styling for the main section */
+main {
+    margin-top: 50px; /* Space above the main section */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    flex-direction: column; /* Stack children vertically */
+    width: 100%; /* Full width */
+    align-items: center; /* Center content vertically */
+    margin-top: 15px; /* Adjust margin */
 }
+
+/* Styling for the login container */
 .login-container {
-    display: flex !important;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center !important;
-    gap: 20px;
-    width: 100%; 
-    max-width: 400px;
-    height:420px ;
-    padding: 30px;
-    margin: 0 auto;
-    background-color: #f1f2e7; ;
-    border: 4px solid #a6b8f9; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex !important; /* Ensure flexbox is applied */
+    flex-direction: column; /* Stack children vertically */
+    flex-wrap: wrap; /* Allow wrapping if necessary */
+    justify-content: center !important; /* Center content vertically */
+    gap: 20px; /* Space between elements */
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width for the container */
+    height: 420px; /* Fixed height for the container */
+    padding: 30px; /* Inner spacing */
+    margin: 0 auto; /* Center the container horizontally */
+    background-color: #f1f2e7; /* Light background color */
+    border: 4px solid #a6b8f9; /* Blue border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
 }
-h1{
-    text-align: center;
-    color: #0c022b;
-    margin:0px
-    
+
+/* Styling for headings */
+h1 {
+    text-align: center; /* Center-align the text */
+    color: #0c022b; /* Dark blue text color */
+    margin: 0px; /* Remove default margin */
 }
-.login-form{
-    display: flex !important;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    align-self: center;
-    justify-content: center !important;
-    padding-bottom: 20px;
+
+/* Styling for the login form */
+.login-form {
+    display: flex !important; /* Ensure flexbox is applied */
+    flex-direction: column; /* Stack children vertically */
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: center; /* Center content horizontally */
+    align-self: center; /* Center the form within its container */
+    justify-content: center !important; /* Center content vertically */
+    padding-bottom: 20px; /* Add spacing below the form */
 }
+
+/* Styling for form labels */
 .login-form label {
-    padding: 4px;
-    display: flex !important;
-    margin-bottom: 3px;
-    font-weight: bold;
-    align-items: center;
-    color: rgb(4, 0, 44);
+    padding: 4px; /* Space around the label */
+    display: flex !important; /* Flex layout for alignment */
+    margin-bottom: 3px; /* Space below the label */
+    font-weight: bold; /* Bold text */
+    align-items: center; /* Align label text vertically */
+    color: rgb(4, 0, 44); /* Dark blue color for text */
 }
 
-/* תיקון יישור עבור זכור אותי והצג סיסמא */
+/* Fix alignment for 'Remember Me' and 'Show Password' labels */
 label[for="remember-me"], label[for="checkbox"] {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-}
-input[type="checkbox"] {
-    width: 16wpx;
-    height: 16px;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Align checkbox and text vertically */
+    gap: 5px; /* Space between checkbox and text */
+    font-size: 12px; /* Smaller font size */
 }
 
+/* Styling for checkboxes */
+input[type="checkbox"] {
+    width: 16px; /* Width of the checkbox */
+    height: 16px; /* Height of the checkbox */
+}
+
+/* Error message styling for password */
 .passerror {
-    size: 10px;
-    margin: 4px 0 0 0;
-    text-align: right;
-    color: #d11124;
+    size: 10px; /* Font size (invalid CSS, should use font-size) */
+    margin: 4px 0 0 0; /* Space above the error message */
+    text-align: right; /* Align text to the right */
+    color: #d11124; /* Red color for error messages */
 }
-.wrong{
-    size: 10px;
-    margin: 4px 0 0 0;
-    text-align: right;
-    color: #d11124;
+
+/* Error message styling for general errors */
+.wrong {
+    size: 10px; /* Font size (invalid CSS, should use font-size) */
+    margin: 4px 0 0 0; /* Space above the error message */
+    text-align: right; /* Align text to the right */
+    color: #d11124; /* Red color for error messages */
 }
-.login-form button{
-    border-color:rgb(3, 2, 45);
-    background-color: rgb(26 15 83);
-    padding: 10px 50px;
-    border-radius: 5px;
-    gap: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    color: aliceblue;
+
+/* Styling for the login button */
+.login-form button {
+    border-color: rgb(3, 2, 45); /* Dark blue border */
+    background-color: rgb(26, 15, 83); /* Dark purple background */
+    padding: 10px 50px; /* Spacing inside the button */
+    border-radius: 5px; /* Rounded corners */
+    gap: 20px; /* Space between elements (not needed for a button) */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    color: aliceblue; /* Light text color */
 }
-#showPassword{
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+
+/* Styling for 'Show Password' checkbox */
+#showPassword {
+    width: 16px; /* Width of the checkbox */
+    height: 16px; /* Height of the checkbox */
+    margin-right: 8px; /* Space to the right */
 }
-#remember-me{
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+
+/* Styling for 'Remember Me' checkbox */
+#remember-me {
+    width: 16px; /* Width of the checkbox */
+    height: 16px; /* Height of the checkbox */
+    margin-right: 8px; /* Space to the right */
 }
-input{
-    border-radius:5%;
-    border-style:solid;
-    cursor: pointer;
-    font-size: 1 rem;
-    font-weight: 40;
-    position: relative;
-    z-index: 1;
-    height: 10px;
-    width: 200px;
-    padding: 12px 12px 6px!important;
-    color: var(--color-text, rgba(0, 0, 0, 0.9)) !important;
-    border-radius: 5px !important;
+
+/* General input styling */
+input {
+    border-radius: 5%; /* Rounded borders (invalid, should use px or rem) */
+    border-style: solid; /* Solid border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Font size */
+    font-weight: 40; /* Invalid, should use numeric values like 400 */
+    position: relative; /* Positioning context */
+    z-index: 1; /* Layering context */
+    height: 10px; /* Input height */
+    width: 200px; /* Input width */
+    padding: 12px 12px 6px !important; /* Inner spacing */
+    color: var(--color-text, rgba(0, 0, 0, 0.9)) !important; /* Text color with fallback */
+    border-radius: 5px !important; /* Rounded corners */
 }
-h4{
-    padding-right: 20px;
-    color:rgb(174, 185, 194);    
-    border-color: black;
-    margin: 10px;
+
+/* Styling for smaller headings */
+h4 {
+    padding-right: 20px; /* Space to the right */
+    color: rgb(174, 185, 194); /* Light gray color */
+    border-color: black; /* Border color (no visible effect here) */
+    margin: 10px; /* Space around the heading */
 }
+
+/* Hover effect for buttons in the contact form */
 .contact-form button:hover {
-    background-color: #575353;
-    
+    background-color: #575353; /* Change background on hover */
 }
-a{
-    color: #1385ff;
+
+/* General link styling */
+a {
+    color: #1385ff; /* Light blue color for links */
 }

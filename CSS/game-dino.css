@@ -1,106 +1,118 @@
+/* General styling for the body */
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: rgb(26 15 83);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-height: 100vh; /* Set minimum height to the full viewport */
+    background-color: rgb(26, 15, 83); /* Dark purple background */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Modern sans-serif fonts */
 }
 
+/* Styling for the logo */
 #logo {
-    position: absolute;  /* מיקום של הלוגו יחסית לגוף הדף */
-    top: 20px;  /* מרחק מהחלק העליון של המסך */
-    right: 150px;  /* מרחק מהחלק השמאלי של המסך */
-    width: 100px;  /* קביעת גודל הלוגו */
-    height: auto;  /* שמירה על יחס הגובה-רוחב */
+    position: absolute; /* Position relative to the entire page */
+    top: 20px; /* Distance from the top */
+    right: 150px; /* Distance from the right */
+    width: 100px; /* Set logo width */
+    height: auto; /* Maintain aspect ratio */
 }
 
+/* Styling for the game container */
 .game-container {
-    text-align: center;
-    background-color: #f1f2e7;
-    border-radius: 10px;
-    box-shadow: 6px 6px 20px 0px #7bc5e7a3;
-    padding: 20px;
-    overflow: hidden;
-    max-width: 900px;
-    width: 90%;
-    position: relative;
+    text-align: center; /* Center text inside the container */
+    background-color: #f1f2e7; /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 6px 6px 20px 0px #7bc5e7a3; /* Blue shadow effect */
+    padding: 20px; /* Inner spacing */
+    overflow: hidden; /* Clip content that overflows */
+    max-width: 900px; /* Maximum width for the container */
+    width: 90%; /* Relative width (90% of the screen) */
+    position: relative; /* Relative positioning for child elements */
 }
 
+/* Styling for the timer */
 #timer {
-    font-size: 32px;
-    color: #7d0068;
-    margin-bottom: 20px;
+    font-size: 32px; /* Large text size */
+    color: #7d0068; /* Purple color */
+    margin-bottom: 20px; /* Space below the timer */
 }
 
+/* Styling for the game area */
 #game-area {
-    position: relative;
-    width: 800px;
-    height: 200px;
-    background-color: #ffffff;
-    border: 2px solid #000;
-    overflow: hidden;
-    margin: 0 auto;
+    position: relative; /* Context for child elements */
+    width: 800px; /* Fixed width */
+    height: 200px; /* Fixed height */
+    background-color: #ffffff; /* White background */
+    border: 2px solid #000; /* Black border */
+    overflow: hidden; /* Clip content outside the boundaries */
+    margin: 0 auto; /* Center the game area */
 }
 
+/* Styling for the dino */
 #dino {
-    position: absolute;
-    bottom: -8px;
-    left: 50px;
-    width: 80px;
-    height: 80px;
-    transition: bottom 0.1s;
+    position: absolute; /* Positioned relative to the game area */
+    bottom: -8px; /* Position slightly below the game area */
+    left: 50px; /* Position 50px from the left */
+    width: 80px; /* Fixed width */
+    height: 80px; /* Fixed height */
+    transition: bottom 0.1s; /* Smooth jumping animation */
 }
 
+/* Styling for images inside dino and obstacle */
 #dino img, #obstacle img {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
 }
 
+/* Styling for the obstacle */
 #obstacle {
-    position: absolute;
-    bottom: -8px;
-    right: -60px;
-    width: 60px;
-    animation: moveObstacle 2s linear infinite;
+    position: absolute; /* Positioned relative to the game area */
+    bottom: -8px; /* Position slightly below the game area */
+    right: -60px; /* Start position outside the right boundary */
+    width: 60px; /* Fixed width */
+    animation: moveObstacle 2s linear infinite; /* Moving animation */
 }
 
+/* Animation for the obstacle */
 @keyframes moveObstacle {
     from {
-        right: -60px;
+        right: -60px; /* Start outside the right boundary */
     }
     to {
-        right: 800px;
+        right: 800px; /* Move to the left boundary */
     }
 }
 
+/* Paused state for the obstacle */
 #obstacle.paused {
-    animation-play-state: paused;
+    animation-play-state: paused; /* Pause the animation */
 }
 
-/* הצגת הודעת הפסילה מתחת למשחק */
+/* Styling for the game over message */
 #game-over-message {
-    display: none;
-    font-size: 30px;
-    color: red;
-    margin-top: 30px;
+    display: none; /* Hide by default */
+    font-size: 30px; /* Large text size */
+    color: red; /* Red color for emphasis */
+    margin-top: 30px; /* Space above the message */
 }
 
+/* Styling for the reset button */
 #reset-btn {
-    display: none;
-    margin-top: 20px;
-    padding: 12px 24px;
-    font-size: 18px;
-    background-color: #7d0068;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    display: none; /* Hide by default */
+    margin-top: 20px; /* Space above the button */
+    padding: 12px 24px; /* Inner padding */
+    font-size: 18px; /* Text size */
+    background-color: #7d0068; /* Purple background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
+/* Hover effect for the reset button */
 #reset-btn:hover {
-    background-color: #5a004e;
+    background-color: #5a004e; /* Darker purple on hover */
 }

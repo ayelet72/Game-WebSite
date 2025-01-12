@@ -1,58 +1,59 @@
-/* עיצוב רקע כללי */
+/* General background styling */
 body {
-    background-color: #1a0f53;
-    font-family: Arial, sans-serif;
-    display: flex;
+    background-color: #1a0f53; /* Deep purple background color */
+    font-family: Arial, sans-serif; /* Font styling for the page */
+    display: flex; /* Center content horizontally and vertically */
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0; /* Remove default margins */
 }
 
-/* עיצוב קונטיינר */
+/* Styling for the container */
 .signup-container {
-    background-color: #f1f2e7;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
+    background-color: #f1f2e7; /* Light background color for contrast */
+    padding: 30px; /* Space inside the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+    max-width: 400px; /* Maximum width of the container */
+    width: 100%; /* Responsive width */
+    text-align: center; /* Center-align text within the container */
 }
 
-/* עיצוב טופס */
+/* Styling for the signup form */
 .signup-form {
-    display: flex;
+    display: flex; /* Arrange inputs and button in a vertical column */
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; /* Space between form elements */
 }
 
 .signup-form input, .signup-form button {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px; /* Space inside inputs and button */
+    font-size: 16px; /* Font size for readability */
+    border: 1px solid #ccc; /* Light border for inputs and button */
+    border-radius: 5px; /* Rounded corners */
 }
 
 .signup-form button {
-    background-color: #1a0f83;
-    color: white;
-    cursor: pointer;
+    background-color: #1a0f83; /* Button background color */
+    color: white; /* Text color for contrast */
+    cursor: pointer; /* Show pointer cursor on hover */
 }
 
 .signup-form button:hover {
-    background-color: #120a5e;
+    background-color: #120a5e; /* Darker color on hover for better feedback */
 }
 
-.nav img{
-    position: absolute;
-    top: 10px;
-    right: 10px;
+/* Styling for navigation logo */
+.nav img {
+    position: absolute; /* Positioned relative to the page */
+    top: 10px; /* 10px from the top */
+    right: 10px; /* 10px from the right */
 }
 
-/* עיצוב הודעות שגיאה */
+/* Styling for error messages */
 .error {
-    display: none;
-    color: red;
-    font-size: 14px;
+    display: none; /* Initially hidden */
+    color: red; /* Red color for error messages */
+    font-size: 14px; /* Smaller font size for error text */
 }

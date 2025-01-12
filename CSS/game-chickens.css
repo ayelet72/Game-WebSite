@@ -1,112 +1,127 @@
+/* Basic settings for the body */
 body {
-    margin: 0;
-    overflow: hidden;
-    background-color:rgb(26 15 83);
-  }
-  #logo{
-    position: absolute;  /* מיקום של הלוגו יחסית לגוף הדף */
-    top: 20px;  /* מרחק מהחלק העליון של המסך */
-    right: 150px;  /* מרחק מהחלק השמאלי של המסך */
-    width: 100px;  /* קביעת גודל הלוגו */
-    height: auto;  /* שמירה על יחס הגובה-רוחב */
-  }
-  #gameArea {
-    width: 600px;  
-    height: 500px;  
-    position: relative;
-    margin: 50px auto; 
-    border: 3px solid #f1f2e7; /* גבול לריבוע */
-    background-color: rgb(1, 1, 59);
-    z-index: 1000000;
-    overflow: hidden;
-  }
-  #player{
-    position: absolute; /* השתנה ל-absolute כדי לאפשר מיקום יחסי להורה */
-    width: 50px;
-    height: 50px;
-    background-image:url(../Images/game-chicken/weapond.jpeg);
-    background-size: cover;
-    bottom: 10px; 
-    left: 50%; 
-    right: 50%;
-    transform: translateX(-50%); /* כדי שמרכז השחקן יתיישר בדיוק לאמצע */
-  }
-  .chicken{
-    position: absolute; /* השתנה ל-absolute כדי לאפשר מיקום יחסי להורה */
-    width: 40px;
-    height: 40px;
-    background-image: url(../Images/game-chicken/chicken.jpeg);
-    /* background-size: cover; */
-    background-size: contain;
-  }
+  margin: 0; /* Remove default margins */
+  overflow: hidden; /* Prevent scrolling */
+  background-color: rgb(26, 15, 83); /* Set a dark purple background color */
+}
 
-  .egg {
-    width: 20px;
-    height: 25px;
-    position: absolute;
-    background: url(../Images/game-chicken/egg.jpg) no-repeat center/cover;
-    border-radius: 50%;
-  }
+/* Logo positioning */
+#logo {
+  position: absolute; /* Position relative to the body */
+  top: 20px; /* Distance from the top */
+  right: 150px; /* Distance from the right */
+  width: 100px; /* Set logo width */
+  height: auto; /* Maintain aspect ratio */
+}
 
- #startButton{
-  display: block; /* הופך את הכפתור לבלוק כדי שניתן יהיה למרכז */
-  margin: 0 auto; /* ממקם את הכפתור במרכז השורה */
-  padding: 10px 20px; /* גודל הכפתור */
-  font-size: 18px;
-  cursor: pointer;
-  background-color: #6dbee7; /* צבע רקע */
-  color: white; /* צבע טקסט */
-  border: none; /* ללא מסגרת */
-  border-radius: 5px; /* קצוות מעוגלים */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* צל */
-  }
-  .bullet{
-    width: 10px;
-    height: 20px;
-    position: absolute;
-    background: url(../Images/game-chicken/bullet.jpg) no-repeat center/cover;
-  }
+/* Game area container */
+#gameArea {
+  width: 600px; /* Set the width of the game area */
+  height: 500px; /* Set the height of the game area */
+  position: relative; /* Position relative to its parent container */
+  margin: 50px auto; /* Center the game area horizontally with some vertical margin */
+  border: 3px solid #f1f2e7; /* Light-colored border for the game area */
+  background-color: rgb(1, 1, 59); /* Dark blue background for the game area */
+  z-index: 1000000; /* Ensure the game area appears above other elements */
+  overflow: hidden; /* Prevent content from overflowing outside the area */
+}
 
+/* Player styling */
+#player {
+  position: absolute; /* Position relative to the game area */
+  width: 50px; /* Set player width */
+  height: 50px; /* Set player height */
+  background-image: url(../Images/game-chicken/weapond.jpeg); /* Player background image */
+  background-size: cover; /* Scale the background image to cover the entire player box */
+  bottom: 10px; /* Position near the bottom of the game area */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Align the player's center exactly with the middle of the game area */
+}
+
+/* Chicken styling */
+.chicken {
+  position: absolute; /* Position relative to the game area */
+  width: 40px; /* Set chicken width */
+  height: 40px; /* Set chicken height */
+  background-image: url(../Images/game-chicken/chicken.jpeg); /* Chicken background image */
+  background-size: contain; /* Ensure the entire chicken image fits within the box */
+}
+
+/* Egg styling */
+.egg {
+  width: 20px; /* Set egg width */
+  height: 25px; /* Set egg height */
+  position: absolute; /* Position relative to the game area */
+  background: url(../Images/game-chicken/egg.jpg) no-repeat center/cover; /* Egg background image with no repeat and proper scaling */
+  border-radius: 50%; /* Make the egg shape round */
+}
+
+/* Start button styling */
+#startButton {
+  display: block; /* Make the button block-level to center it */
+  margin: 0 auto; /* Center horizontally */
+  padding: 10px 20px; /* Set button padding */
+  font-size: 18px; /* Font size for the button text */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  background-color: #6dbee7; /* Light blue background */
+  color: white; /* White text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+}
+
+/* Bullet styling */
+.bullet {
+  width: 10px; /* Set bullet width */
+  height: 20px; /* Set bullet height */
+  position: absolute; /* Position relative to the game area */
+  background: url(../Images/game-chicken/bullet.jpg) no-repeat center/cover; /* Bullet background image */
+}
+
+/* Hidden elements (used for visibility toggling) */
 .hidden {
-    display: none;
+  display: none; /* Completely hide the element */
 }
 
+/* Game message styling (for "Game Over" or similar messages) */
 #gameMessage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f1f2e7;
-    color: rgb(6, 29, 112);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    z-index: 1000;
+  position: absolute; /* Position relative to the game area */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the element exactly */
+  background-color: #f1f2e7; /* Light background color */
+  color: rgb(6, 29, 112); /* Dark text color */
+  padding: 20px; /* Add spacing inside the box */
+  border-radius: 10px; /* Round the corners */
+  text-align: center; /* Center the text */
+  z-index: 1000; /* Ensure it appears above all other elements */
 }
 
+/* "Play Again" button styling */
 #playAgain {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
+  margin-top: 10px; /* Add space above the button */
+  padding: 10px 20px; /* Set button padding */
+  font-size: 16px; /* Font size for the button text */
+  cursor: pointer; /* Pointer cursor on hover */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text color */
 }
 
+/* Timer display styling */
 #timerDisplay {
-  position: absolute; /* כדי למקם את הטיימר במיקום מותאם בתוך המשחק */
-  top: 10px; /* רווח מהחלק העליון */
-  right: 10px; /* רווח מהצד הימני */
-  font-size: 20px; /* גודל הטקסט */
-  font-weight: bold; /* הדגשת הטקסט */
-  color: rgb(1, 1, 59);
-  background-color: #f1f2e7;
-  padding: 10px 15px;
-  border-radius: 2px;
-  box-shadow: 7px 0px 20px 0px #f1f2e78a;
-  z-index: 100; /* כדי שהטיימר תמיד ייראה מעל כל האלמנטים */
-  text-align: center; /* יישור הטקסט למרכז */
-  font-family: Arial, sans-serif; /* פונט קריא */
+  position: absolute; /* Position relative to the game area */
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  font-size: 20px; /* Font size of the timer */
+  font-weight: bold; /* Bold font style */
+  color: rgb(1, 1, 59); /* Dark blue text color */
+  background-color: #f1f2e7; /* Light background */
+  padding: 10px 15px; /* Add padding inside the timer box */
+  border-radius: 2px; /* Slightly rounded corners */
+  box-shadow: 7px 0px 20px 0px #f1f2e78a; /* Add a shadow for depth */
+  z-index: 100; /* Ensure it appears above other elements */
+  text-align: center; /* Center the text */
+  font-family: Arial, sans-serif; /* Use a readable font */
 }
