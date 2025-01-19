@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dino Game</title>
-    <!-- Link to the CSS file specific to the Dino game -->
     <link rel="stylesheet" href="../css/game-dino.css">
 </head>
 <body>
-    <!-- Logo that links back to the main page -->
+    <!-- קישור לעמוד הראשי במקום הלוגו -->
     <div id="logo">
         <a href="main.html">
             <img src="../Images/logo6.jpg" alt="Game Logo">
@@ -16,29 +15,21 @@
     </div>
     
     <div class="game-container">
-        <!-- Timer displaying the elapsed time -->
-        <div id="timer">Timer: 0s</div>
-
-        <!-- Game area containing the dino and obstacles -->
-        <div id="game-area">
-            <div id="dino">
-                <!-- Dino character image -->
-                <img src="../Images/game-dino/dino.png" alt="Dino">
-            </div>
-            <div id="obstacle">
-                <!-- Obstacle image (e.g., tree) -->
-                <img src="../Images/game-dino/tree.png" alt="Obstacle">
-            </div>
-        </div>
-        
-        <!-- Game over message will be displayed here -->
-        <div id="game-over-message"></div>
-        
-        <!-- Button to restart the game -->
-        <button id="reset-btn" onclick="resetGame()">Restart Game</button>
-    </div>
+      <div id="timer">Timer: 0s</div>
+      <div id="game-area">
+          <div id="dino">
+              <img src="../Images/game-dino/dino.png" alt="Dino">
+          </div>
+          <div id="obstacle">
+              <img src="../Images/game-dino/tree.png" alt="Obstacle">
+          </div>
+      </div>
+      <!-- הודעת פסילה מופיעה מתחת למשחק -->
+      <div id="game-over-message"></div>
+      <button id="reset-btn" onclick="resetGame()">Restart Game</button>
+  </div>
   
-    <!-- Link to the JavaScript file for the Dino game -->
     <script src="../js/game-dino.js"></script>
 </body>
 </html>
+ 

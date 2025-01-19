@@ -20,7 +20,7 @@ const gameAreaHeight = gameArea.offsetHeight;
 
 // Start the game by clicking the button
 startButton.addEventListener("click", () => {
-    startButton.stylez.display = "none"; // Hide the button
+    startButton.style.display = "none"; // Hide the button
     startGame();
 });
 

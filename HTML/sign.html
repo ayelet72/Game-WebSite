@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl"> <!-- Specifies the document type and sets the language to Hebrew with right-to-left direction -->
+<html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8"> <!-- Ensures proper character encoding for Hebrew and other special characters -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive to different screen sizes -->
-    <title>הרשמה</title> <!-- Sets the title of the page to 'Registration' in Hebrew -->
-    <link rel="stylesheet" href="../css/sign.css"> <!-- Links an external CSS file for styling -->
-    <script defer src="../js/sign.js"></script> <!-- Links an external JavaScript file with defer to ensure it loads after HTML is parsed -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הרשמה</title>
+    <link rel="stylesheet" href="../css/sign.css">
+    <script defer src="../js/sign.js"></script>
 </head>
 <body>
     <header>
-        <div class="nav"> <!-- Navigation container -->
-            <img src="../Images/logo6.5.jpg" alt="logo" id="logo"> <!-- Displays a logo with an alt description for accessibility -->
+        <div class="nav">
+            <img src="../Images/logo6.5.jpg" alt="logo" id="logo">
         </div>
     </header>
     <main>
-        <div class="signup-container"> <!-- Container for the signup form -->
-            <h1>הרשמה:</h1> <!-- Main heading for the signup section -->
-            <form id="signup-form" class="signup-form"> <!-- Signup form with a unique ID and class for styling and JavaScript interactions -->
-                <label for="username">שם משתמש:</label> <!-- Label for the username input field -->
-                <input type="text" id="username" name="username" placeholder="בחר שם משתמש" required> <!-- Text input for username, marked as required -->
+        <div class="signup-container">
+            <h1>הרשמה:</h1>
+            <form id="signup-form" class="signup-form">
+                <label for="username">שם משתמש:</label>
+                <input type="text" id="username" name="username" placeholder="בחר שם משתמש" required>
 
-                <label for="email">אימייל:</label> <!-- Label for the email input field -->
-                <input type="email" id="email" name="email" placeholder="הכנס כתובת אימייל" required> <!-- Email input with validation for proper format -->
+                <label for="email">אימייל:</label>
+                <input type="email" id="email" name="email" placeholder="הכנס כתובת אימייל" required>
 
-                <label for="password">סיסמא:</label> <!-- Label for the password input field -->
-                <input type="password" id="password" name="password" placeholder="מינימום 6 תווים" required> <!-- Password input with minimum character hint -->
+                <label for="password">סיסמא:</label>
+                <input type="password" id="password" name="password" placeholder="מינימום 6 תווים" required>
                 
-                <div id="error" class="error" style="display: none; color: red;"></div> <!-- Error message container, hidden by default -->
+                <div id="error" class="error" style="display: none; color: red;"></div>
 
-                <button type="submit">הרשמה</button> <!-- Submit button to trigger form submission -->
-                <h4>כבר רשומים? <a href="login.html">התחברו כאן</a></h4> <!-- Link to the login page for existing users -->
+                <button type="submit">הרשמה</button>
+                <h4>כבר רשומים? <a href="login.html">התחברו כאן</a></h4>
             </form>
         </div>
     </main>
